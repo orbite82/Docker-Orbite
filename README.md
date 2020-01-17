@@ -214,5 +214,15 @@ b7a5bcc4a58a: Pull complete
 Digest: sha256:ffc76f71dd8be8c9e222d420dc96901a07b61616689a44c7b3ef6a10b7213de4
 Status: Downloaded newer image for ubuntu:14.04
 
+---
 
+# Executando umcontainer em BackGround
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
+030609d344a20c796c8564ce54eaa2065ce18713539ad3be50864a6476c3c78f
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS               NAMES
+030609d344a2        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   20 seconds ago      Up 19 seconds       80/tcp, 443/tcp     boring_haslett
+d16daa7fb5a3        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   4 minutes ago       Up 4 minutes        80/tcp, 443/tcp     jolly_mendeleev
 

@@ -226,3 +226,52 @@ CONTAINER ID        IMAGE                       COMMAND                  CREATED
 030609d344a2        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   20 seconds ago      Up 19 seconds       80/tcp, 443/tcp     boring_haslett
 d16daa7fb5a3        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   4 minutes ago       Up 4 minutes        80/tcp, 443/tcp     jolly_mendeleev
 
+---
+
+# Docker stop formas mais rapida parar
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 030609d344a2
+030609d344a2
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop -t 0 d16daa7fb5a3
+d16daa7fb5a3
+
+---
+
+# Docker com -P para comunicar com container
+
+# antes
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
+f80defd9bf08884eedb7f158feb454fbf25bee6a1bb8202c28d04b76bd52f91a
+
+# depois
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d -P dockersamples/static-site
+3d798eaeccbc6faf3f42655b175e55106432444d5419b9b9c746d0d0a5226baa
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
+3d798eaeccbc        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   19 seconds ago      Up 18 seconds       0.0.0.0:32769->80/tcp, 0.0.0.0:32768->443/tcp   gifted_joliot
+f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 seconds ago      Up 52 seconds       80/tcp, 443/tcp                                 nifty_margulis
+
+---
+
+# Verificar a porta do container
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
+443/tcp -> 0.0.0.0:32768
+80/tcp -> 0.0.0.0:32769
+
+---
+
+# Adicionando foto e acessando aplicação pela porta
+
+![Test Image 1]("hello docker.png")
+
+
+4: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:76:86:d1:6b brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:76ff:fe86:d16b/64 scope link 
+       valid_lft forever preferred_lft forever
+

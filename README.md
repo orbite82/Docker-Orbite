@@ -23,6 +23,8 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 
+# Listar container
+
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
 
 
@@ -33,6 +35,8 @@ b67351a66eba        hello-world         "/hello"            12 seconds ago      
 73a7be80bc76        hello-world         "/hello"            14 seconds ago      Exited (0) 12 seconds ago                       admiring_easley
 fea647289d44        hello-world         "/hello"            15 seconds ago      Exited (0) 14 seconds ago                       nervous_lamarr
 683fc3478eb0        hello-world         "/hello"            17 seconds ago      Exited (0) 16 seconds ago                       cool_ride
+
+# Remover todas as imagens baixadas Docker
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
 
@@ -50,7 +54,11 @@ Total reclaimed space: 0B
 
 -----
 
+# Executando uma imagem Docker
+
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu
+
+# Executando uma imagem Docker e com intereção
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
 
@@ -76,7 +84,7 @@ cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      
 99280a034763        ubuntu              "/bin/bash"         5 minutes ago       Exited (0) 5 minutes ago                            vigorous_ishizaka
 85fbc0514784        ubuntu              "/bin/bash"         5 minutes ago       Exited (0) About a minute ago                       quirky_mccarthy
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ vim command-initial-docker-test.txt
+# Executando um comando dentro da imagem do container e saindo
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu echo "Orbite"
 
@@ -84,12 +92,14 @@ Orbite
 
 
 ----
+# Executando um comando dentro da imagem do container e interagindo
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
 
 root@2e1f9f6a6c41:/# exit
 
 ----
+# Iniciando uma imagem de um container especifico
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start 2e1f9f6a6c41
 
@@ -100,9 +110,13 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 2e1f9f6a6c41        ubuntu              "/bin/bash"         3 minutes ago       Up 9 seconds                            quizzical_hodgkin
 
+# Parando uma imagem de um container especifico
+
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
 
 2e1f9f6a6c41
+
+# Iniciando uma imagem de um container especifico e imteragindo
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start -a -i 2e1f9f6a6c41
 

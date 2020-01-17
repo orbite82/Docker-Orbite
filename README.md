@@ -164,3 +164,33 @@ Total reclaimed space: 0B
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
+---
+
+# Listando as imagens baixadas em sua máquina do Docker
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker images
+
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                               latest              ccc6e87d482b        40 hours ago        64.2MB
+k8s.gcr.io/kube-proxy                v1.17.0             7d54289267dc        5 weeks ago         116MB
+k8s.gcr.io/kube-apiserver            v1.17.0             0cae8d5cc64c        5 weeks ago         171MB
+k8s.gcr.io/kube-scheduler            v1.17.0             78c190f736b1        5 weeks ago         94.4MB
+k8s.gcr.io/kube-controller-manager   v1.17.0             5eb3b7486872        5 weeks ago         161MB
+gcr.io/kubernetes-helm/tiller        v2.16.1             1f92aa902d73        2 months ago        91.2MB
+weaveworks/weave-npc                 2.6.0               5105e13e253e        2 months ago        34.9MB
+weaveworks/weave-kube                2.6.0               174e0e8ef23d        2 months ago        114MB
+k8s.gcr.io/coredns                   1.6.5               70f311871ae1        2 months ago        41.6MB
+k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        2 months ago        288MB
+hello-world                          latest              fce289e99eb9        12 months ago       1.84kB
+k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        2 years ago         742kB
+
+# Removendo uma imagem Docker baixada em sua máquina
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker rmi hello-world
+
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:9572f7cdcee8591948c2963463447a53466950b3fc15a247fcad1917ca215a2f
+Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
+Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
+
+

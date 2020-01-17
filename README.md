@@ -125,4 +125,42 @@ root@2e1f9f6a6c41:/# exit
 
 ----
 
+# Removendo imagem de um container baixada em sua máquina
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
+
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                   PORTS               NAMES
+2e1f9f6a6c41        ubuntu              "/bin/bash"         2 hours ago         Exited (0) 2 hours ago                       quizzical_hodgkin
+ec50c72afa03        ubuntu              "echo Orbite"       2 hours ago         Exited (0) 2 hours ago                       charming_dewdney
+cae670ce05d1        ubuntu              "/bin/bash"         2 hours ago         Exited (0) 2 hours ago                       awesome_shirley
+99280a034763        ubuntu              "/bin/bash"         3 hours ago         Exited (0) 3 hours ago                       vigorous_ishizaka
+85fbc0514784        ubuntu              "/bin/bash"         3 hours ago         Exited (0) 2 hours ago                       quirky_mccarthy
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ docker con
+config     container  context    
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ docker con
+config     container  context    
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container rm 2e1f9f6a6c41
+2e1f9f6a6c41
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container rm ec5
+ec5
+
+# Removendo todas as Imagens de containers baixadas em sua máquina
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
+
+WARNING! This will remove all stopped containers.
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+cae670ce05d196d4ec16f5255d2011099a0a9f1a5222140abafa4ef7cb87271e
+99280a03476364bcf65957133bd7a9b4b8d68e712befcdf85892e1ca5cdf9cff
+85fbc0514784732af742d590ba6daac525a670839cbb92283898f1d39d8e14c9
+
+Total reclaimed space: 0B
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 

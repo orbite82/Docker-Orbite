@@ -193,4 +193,26 @@ Untagged: hello-world@sha256:9572f7cdcee8591948c2963463447a53466950b3fc15a247fca
 Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
 Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
 
+---
+
+# Baixandou uma imagem com o numero e versão da distribuição especifica
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu:18.04
+
+Unable to find image 'ubuntu:18.04' locally
+18.04: Pulling from library/ubuntu
+Digest: sha256:8d31dad0c58f552e890d68bbfb735588b6b820a46e459672d96e585871acc110
+Status: Downloaded newer image for ubuntu:18.04
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu:14.04
+
+Unable to find image 'ubuntu:14.04' locally
+14.04: Pulling from library/ubuntu
+2e6e20c8e2e6: Pull complete 
+30bb187ac3fc: Pull complete 
+b7a5bcc4a58a: Pull complete 
+Digest: sha256:ffc76f71dd8be8c9e222d420dc96901a07b61616689a44c7b3ef6a10b7213de4
+Status: Downloaded newer image for ubuntu:14.04
+
+
 

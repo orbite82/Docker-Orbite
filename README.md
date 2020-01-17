@@ -265,7 +265,7 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
 
 # Adicionando foto e acessando aplicação pela porta
 
-![hello docker]("hello docker.png")
+![hello docker image 1](https://github.com/orbite82/Docker-Orbite/blob/master/hello%20docker.png)
 
 
 4: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 

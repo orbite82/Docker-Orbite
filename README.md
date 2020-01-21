@@ -1,6 +1,8 @@
 # Docker-Orbite
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run hello-world
+```
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -15,16 +17,20 @@ To generate this message, Docker took the following steps:
     to your terminal.
 
 To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
+
+``` 
+$ docker run -it ubuntu bash
 
 Share images, automate workflows, and more with a free Docker ID:
  https://hub.docker.com/
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
+```
 
 # Listar container
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
 
 
@@ -35,9 +41,10 @@ b67351a66eba        hello-world         "/hello"            12 seconds ago      
 73a7be80bc76        hello-world         "/hello"            14 seconds ago      Exited (0) 12 seconds ago                       admiring_easley
 fea647289d44        hello-world         "/hello"            15 seconds ago      Exited (0) 14 seconds ago                       nervous_lamarr
 683fc3478eb0        hello-world         "/hello"            17 seconds ago      Exited (0) 16 seconds ago                       cool_ride
-
+```
 # Remover todas as imagens baixadas Docker
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
 
 WARNING! This will remove all stopped containers.
@@ -51,15 +58,18 @@ fea647289d4416a5f4a868cdab7394352607abd349d0a46dcd138461b7f7a4bc
 683fc3478eb084e6535d31b1edc98f35aae2673b10a15c6fbd1480ed2830c83e
 
 Total reclaimed space: 0B
-
+```
 -----
 
 # Executando uma imagem Docker
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu
+```
 
 # Executando uma imagem Docker e com intereção
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
 
 root@99280a034763:/# exit
@@ -71,8 +81,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 85fbc0514784        ubuntu              "/bin/bash"         46 seconds ago      Exited (0) 45 seconds ago                       quirky_mccarthy
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container run -a -it 85fbc0514784
 
+```
 ----
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -83,24 +95,30 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      Exited (0) 19 seconds ago                           awesome_shirley
 99280a034763        ubuntu              "/bin/bash"         5 minutes ago       Exited (0) 5 minutes ago                            vigorous_ishizaka
 85fbc0514784        ubuntu              "/bin/bash"         5 minutes ago       Exited (0) About a minute ago                       quirky_mccarthy
+```
 
 # Executando um comando dentro da imagem do container e saindo
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu echo "Orbite"
 
 Orbite
-
+```
 
 ----
 # Executando um comando dentro da imagem do container e interagindo
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
 
 root@2e1f9f6a6c41:/# exit
+```
 
 ----
+
 # Iniciando uma imagem de um container especifico
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start 2e1f9f6a6c41
 
 2e1f9f6a6c41
@@ -109,24 +127,29 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 2e1f9f6a6c41        ubuntu              "/bin/bash"         3 minutes ago       Up 9 seconds                            quizzical_hodgkin
+```
 
 # Parando uma imagem de um container especifico
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
 
 2e1f9f6a6c41
+```
 
 # Iniciando uma imagem de um container especifico e imteragindo
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start -a -i 2e1f9f6a6c41
 
 root@2e1f9f6a6c41:/# exit
-
+```
 
 ----
 
 # Removendo imagem de um container baixada em sua máquina
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                   PORTS               NAMES
@@ -147,9 +170,11 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container rm 2e1f9f6a6c
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container rm ec5
 ec5
+```
 
 # Removendo todas as Imagens de containers baixadas em sua máquina
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
 
 WARNING! This will remove all stopped containers.
@@ -163,11 +188,12 @@ Total reclaimed space: 0B
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
+```
 ---
 
 # Listando as imagens baixadas em sua máquina do Docker
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker images
 
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
@@ -183,20 +209,24 @@ k8s.gcr.io/coredns                   1.6.5               70f311871ae1        2 m
 k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        2 months ago        288MB
 hello-world                          latest              fce289e99eb9        12 months ago       1.84kB
 k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        2 years ago         742kB
+```
 
 # Removendo uma imagem Docker baixada em sua máquina
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker rmi hello-world
 
 Untagged: hello-world:latest
 Untagged: hello-world@sha256:9572f7cdcee8591948c2963463447a53466950b3fc15a247fcad1917ca215a2f
 Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
 Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
+```
 
 ---
 
 # Baixandou uma imagem com o numero e versão da distribuição especifica
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu:18.04
 
 Unable to find image 'ubuntu:18.04' locally
@@ -213,11 +243,13 @@ Unable to find image 'ubuntu:14.04' locally
 b7a5bcc4a58a: Pull complete 
 Digest: sha256:ffc76f71dd8be8c9e222d420dc96901a07b61616689a44c7b3ef6a10b7213de4
 Status: Downloaded newer image for ubuntu:14.04
+```
 
 ---
 
 # Executando umcontainer em BackGround
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
 030609d344a20c796c8564ce54eaa2065ce18713539ad3be50864a6476c3c78f
 
@@ -225,16 +257,19 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS               NAMES
 030609d344a2        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   20 seconds ago      Up 19 seconds       80/tcp, 443/tcp     boring_haslett
 d16daa7fb5a3        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   4 minutes ago       Up 4 minutes        80/tcp, 443/tcp     jolly_mendeleev
+```
 
 ---
 
 # Docker stop formas mais rapida parar
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 030609d344a2
 030609d344a2
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop -t 0 d16daa7fb5a3
 d16daa7fb5a3
+```
 
 ---
 
@@ -263,10 +298,11 @@ f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 se
 
 # Verificar a porta do container
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
 443/tcp -> 0.0.0.0:32768
 80/tcp -> 0.0.0.0:32769
-
+```
 ---
 
 # Adicionando foto e acessando aplicação pela porta
@@ -286,12 +322,13 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
 
 # Executar e colocar um nome no container
 
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d -P --name orbite-container dockersamples/static-site
 11bd90a2ca109c249cfaa18f7f46594d50a2a7033c431eb863e904b9d2d73a79
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
 11bd90a2ca10        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   9 seconds ago       Up 8 seconds        0.0.0.0:32771->80/tcp, 0.0.0.0:32770->443/tcp   orbite-container
-
+```
 
 

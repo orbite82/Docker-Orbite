@@ -240,19 +240,25 @@ d16daa7fb5a3
 
 # Docker com -P para comunicar com container
 
-# antes
+# Antes
+
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
 f80defd9bf08884eedb7f158feb454fbf25bee6a1bb8202c28d04b76bd52f91a
+```
 
-# depois
+# Depois
+
+```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d -P dockersamples/static-site
 3d798eaeccbc6faf3f42655b175e55106432444d5419b9b9c746d0d0a5226baa
+
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
 3d798eaeccbc        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   19 seconds ago      Up 18 seconds       0.0.0.0:32769->80/tcp, 0.0.0.0:32768->443/tcp   gifted_joliot
 f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 seconds ago      Up 52 seconds       80/tcp, 443/tcp                                 nifty_margulis
-
+```
 ---
 
 # Verificar a porta do container
@@ -274,4 +280,18 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
        valid_lft forever preferred_lft forever
     inet6 fe80::42:76ff:fe86:d16b/64 scope link 
        valid_lft forever preferred_lft forever
+
+
+---
+
+# Executar e colocar um nome no container
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d -P --name orbite-container dockersamples/static-site
+11bd90a2ca109c249cfaa18f7f46594d50a2a7033c431eb863e904b9d2d73a79
+
+torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
+11bd90a2ca10        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   9 seconds ago       Up 8 seconds        0.0.0.0:32771->80/tcp, 0.0.0.0:32770->443/tcp   orbite-container
+
+
 

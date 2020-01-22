@@ -679,3 +679,73 @@ Server is listening on port 3000
 ```
 ---
 
+# Criando um Dockerfile
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ ls
+ command-initial-docker-test.txt   container-máquinalocal.png   Docker-Files-Save   eu-amo-docker.png  'hello docker.png'   i-love-very-docker2.png   i-love-very-docker.png   README.md   volume-exemplo.zip
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ cd Docker-Files-Save/
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save
+└──> $ ls
+novo-arquivo.txt  volume-exemplo
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save
+└──> $ cd volume-exemplo/
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ ls
+Dockerfile  index.html  index.js  main.css  package.json
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker build -f Dockerfile -t orbite/node-teste-1 .
+Sending build context to Docker daemon  6.144kB
+Step 1/7 : FROM node:latest
+ ---> f7756628c1ee
+Step 2/7 : MAINTAINER Thiago Orbite
+ ---> Running in 09dbd434e599
+Removing intermediate container 09dbd434e599
+ ---> 564a852c3f48
+Step 3/7 : COPY . /var/www
+ ---> f78e9f6da5fd
+Step 4/7 : WORKDIR /var/www
+ ---> Running in 463d5432e9f3
+Removing intermediate container 463d5432e9f3
+ ---> a9fee9c3c68a
+Step 5/7 : RUN npm install
+ ---> Running in ffa8984421c6
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN volume-exemplo@1.0.0 No description
+npm WARN volume-exemplo@1.0.0 No repository field.
+
+added 50 packages from 37 contributors and audited 126 packages in 4.431s
+found 0 vulnerabilities
+
+Removing intermediate container ffa8984421c6
+ ---> 7401e2ce9447
+Step 6/7 : ENTRYPOINT npm start
+ ---> Running in 910e7add8c63
+Removing intermediate container 910e7add8c63
+ ---> 67771c5610f6
+Step 7/7 : EXPOSE 3000
+ ---> Running in 9afc106458e2
+Removing intermediate container 9afc106458e2
+ ---> a1be224ed3ed
+Successfully built a1be224ed3ed
+Successfully tagged orbite/node-teste-1:latest
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+orbite/node-teste-1                  latest              a1be224ed3ed        7 minutes ago       943MB
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker run -d -p 8080:3000 orbite/node-teste-1
+6e489adc0f1394886e742a76833cff286244ccc0dbbd225cc5d44f76bc7f1953
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE                 COMMAND                  CREATED              STATUS              PORTS                    NAMES
+6e489adc0f13        orbite/node-teste-1   "/bin/sh -c 'npm sta…"   About a minute ago   Up About a minute   0.0.0.0:8080->3000/tcp   focused_mccarthy
+
+```
+---

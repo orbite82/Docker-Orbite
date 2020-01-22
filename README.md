@@ -565,7 +565,7 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
                 "Propagation": ""
 ```
 ---
-# Salvando e direcionando os dados do container na sua pasta local
+# Salvando e direcionando os dados, logs e etc... do container na sua pasta local
 
 ```
 ┌─[torbite]@[BIO-02059]:~
@@ -577,3 +577,5 @@ root@d44133277375:/var/www# touch novo-arquivo.txt
 root@d44133277375:/var/www# echo "Arquivo criado dentro deste volume" > novo-arquivo.txt
 ```
 ![container-máquinalocal](https://github.com/orbite82/Docker-Orbite/blob/master/container-máquinalocal.png )
+---
+

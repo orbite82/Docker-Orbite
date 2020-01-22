@@ -576,4 +576,4 @@ root@d44133277375:/# cd var/www/
 root@d44133277375:/var/www# touch novo-arquivo.txt
 root@d44133277375:/var/www# echo "Arquivo criado dentro deste volume" > novo-arquivo.txt
 ```
-![hello docker image 1]( )
+![container-máquinalocal](https://github.com/orbite82/Docker-Orbite/blob/master/container-máquinalocal.png )

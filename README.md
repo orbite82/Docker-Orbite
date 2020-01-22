@@ -767,5 +767,21 @@ Login Succeeded
 ```
 
 ```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker push orbite82/node-teste-1
+The push refers to repository [docker.io/orbite82/node-teste-1]
+a2df4fd75275: Pushed 
+96d223e7ea2d: Pushed 
+0f9ac94f8ebe: Pushed 
+8b6ab0bb1c8e: Pushed 
+6f8fa9f09d6b: Pushed 
+42f9c2f9c08e: Pushed 
+99e8bd3efaaf: Pushed 
+bee1e39d7c3a: Pushed 
+1f59a4b2e206: Pushed 
+0ca7f54856c0: Pushed 
+ebb9ae013834: Pushed 
+latest: digest: sha256:6065e5250f7f97eb467ba40ea8c9ef4d7d6dee357465879197b01b177d2368dc size: 2634
 
 ```
+![dockerhub1]()

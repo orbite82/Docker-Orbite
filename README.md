@@ -624,7 +624,7 @@ Server is listening on port 3000
 
 * Se não passar o parametro -d, seu terminal vai travar, porém a apicação vai rodar e você conseve ver via localhost:8080 o resultado abaixo:
 
-![eu-amo-docker]( )
+![eu-amo-docker](https://github.com/orbite82/Docker-Orbite/blob/master/eu-amo-docker.png)
 
 ```
 ┌─[torbite]@[BIO-02059]:~

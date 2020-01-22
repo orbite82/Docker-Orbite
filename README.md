@@ -579,3 +579,56 @@ root@d44133277375:/var/www# echo "Arquivo criado dentro deste volume" > novo-arq
 ![container-máquinalocal](https://github.com/orbite82/Docker-Orbite/blob/master/container-máquinalocal.png )
 ---
 
+# Rodando o código dentro de um container
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -p 8080:3000 -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" node npm start
+Unable to find image 'node:latest' locally
+latest: Pulling from library/node
+146bd6a88618: Pull complete 
+9935d0c62ace: Pull complete 
+db0efb86e806: Pull complete 
+e705a4c4fd31: Pull complete 
+c877b722db6f: Pull complete 
+645c20ec8214: Pull complete 
+015773e73227: Pull complete 
+ed90cb6d78c9: Pull complete 
+cf4d9e2a1c31: Pull complete 
+Digest: sha256:2822a3dad9c78add26f6265983d82b49882560c34c018cbbb09e594027a5d1bc
+Status: Downloaded newer image for node:latest
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2020-01-22T18_15_53_818Z-debug.log
+```
+# Corrigindo o ERR! , informando qual diretório deve ser executado
+
+* vamos passar a flag `-w` (Working Directory)
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -p 8080:3000 -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" node npm start
+
+> volume-exemplo@1.0.0 start /var/www
+> node .
+
+Server is listening on port 3000
+```
+# OBS
+
+* Se não passar o parametro -d, seu terminal vai travar, porém a apicação vai rodar e você conseve ver via localhost:8080 o resultado abaixo:
+
+![eu-amo-docker]( )
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -p 8080:3000 -v  "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" -d node npm start
+008a001e129de2d503f7421d902fbf320a0a71b5fdecbe6feeae60b546b7b8c0
+
+```

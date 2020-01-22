@@ -752,6 +752,8 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 
 # Subindo imagem no Docker Hub
 
+# Docker Login
+
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
 └──> $ sudo docker login
@@ -765,6 +767,8 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 
 ```
+
+# Docker Push
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
@@ -784,4 +788,22 @@ ebb9ae013834: Pushed
 latest: digest: sha256:6065e5250f7f97eb467ba40ea8c9ef4d7d6dee357465879197b01b177d2368dc size: 2634
 
 ```
+# Dockerhub 
+
 ![dockerhub1](https://github.com/orbite82/Docker-Orbite/blob/master/dockerhub1.png)
+
+
+# Fazendo um Docker Pull para testar
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker pull orbite82/node-teste-1
+Using default tag: latest
+latest: Pulling from orbite82/node-teste-1
+Digest: sha256:6065e5250f7f97eb467ba40ea8c9ef4d7d6dee357465879197b01b177d2368dc
+Status: Image is up to date for orbite82/node-teste-1:latest
+docker.io/orbite82/node-teste-1:latest
+
+```
+---
+

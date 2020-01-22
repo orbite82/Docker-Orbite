@@ -537,3 +537,43 @@ Initializing Tue Jan 21 13:19:36 UTC 2020
 [INFO] Checks: 74
 [INFO] Score: 10
 ```
+---
+
+# Salvando dados com volumes
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ docker run -v "/var/www" ubuntu
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps -a
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS                      PORTS               NAMES
+1e48135c289a        ubuntu                         "/bin/bash"              10 minutes ago      Exited (0) 10 minutes ago                       trusting_engelbart
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker inspect 1e48135c289a
+
+"Mounts": [
+            {
+                "Type": "volume",
+                "Name": "bad1c6bc29c48d30d584e4d31eee0660eb2e2faa7af9d4303095dc205ed7365b",
+                "Source": "/var/lib/docker/volumes/bad1c6bc29c48d30d584e4d31eee0660eb2e2faa7af9d4303095dc205ed7365b/_data",
+                "Destination": "/var/www",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+```
+---
+# Salvando e direcionando os dados do container na sua pasta local
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -it -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save:/var/www" ubuntu
+root@d44133277375:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@d44133277375:/# cd var/www/
+root@d44133277375:/var/www# touch novo-arquivo.txt
+root@d44133277375:/var/www# echo "Arquivo criado dentro deste volume" > novo-arquivo.txt
+```
+![hello docker image 1]( )

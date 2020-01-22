@@ -697,7 +697,7 @@ novo-arquivo.txt  volume-exemplo
 Dockerfile  index.html  index.js  main.css  package.json
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
-└──> $ sudo docker build -f Dockerfile -t orbite/node-teste-1 .
+└──> $ sudo docker build -f Dockerfile -t orbite82/node-teste-1 .
 Sending build context to Docker daemon  6.144kB
 Step 1/7 : FROM node:latest
  ---> f7756628c1ee
@@ -731,21 +731,41 @@ Step 7/7 : EXPOSE 3000
 Removing intermediate container 9afc106458e2
  ---> a1be224ed3ed
 Successfully built a1be224ed3ed
-Successfully tagged orbite/node-teste-1:latest
+Successfully tagged orbite82/node-teste-1:latest
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
 └──> $ sudo docker images
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-orbite/node-teste-1                  latest              a1be224ed3ed        7 minutes ago       943MB
+orbite82/node-teste-1                  latest              a1be224ed3ed        7 minutes ago       943MB
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
-└──> $ sudo docker run -d -p 8080:3000 orbite/node-teste-1
+└──> $ sudo docker run -d -p 8080:3000 orbite82/node-teste-1
 6e489adc0f1394886e742a76833cff286244ccc0dbbd225cc5d44f76bc7f1953
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
 └──> $ sudo docker ps
 CONTAINER ID        IMAGE                 COMMAND                  CREATED              STATUS              PORTS                    NAMES
-6e489adc0f13        orbite/node-teste-1   "/bin/sh -c 'npm sta…"   About a minute ago   Up About a minute   0.0.0.0:8080->3000/tcp   focused_mccarthy
+6e489adc0f13        orbite82/node-teste-1   "/bin/sh -c 'npm sta…"   About a minute ago   Up About a minute   0.0.0.0:8080->3000/tcp   focused_mccarthy
 
 ```
 ---
+
+# Subindo imagem no Docker Hub
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
+└──> $ sudo docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: orbite82
+Password: 
+WARNING! Your password will be stored unencrypted in /home/torbite/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+```
+
+```
+
+```

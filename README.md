@@ -640,5 +640,12 @@ Server is listening on port 3000
 
 ![i-love-very-docker2](https://github.com/orbite82/Docker-Orbite/blob/master/i-love-very-docker2.png)
 
+# ou `-d` no começo
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -d -p 8080:3000 -v  "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" node npm start
+954e8831381205addf4f014853e9c47c6e4acaeaa08e4cb336f0ebd45dcefde8
+```
 ---
 

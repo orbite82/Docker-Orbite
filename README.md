@@ -1186,5 +1186,95 @@ CONTAINER ID        IMAGE                        COMMAND             CREATED    
 
 ---
 
+* Após teste remover o container e seguir o procedimento de subir o banco mongo
 
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
 
+CONTAINER ID        IMAGE                        COMMAND             CREATED             STATUS              PORTS                    NAMES
+4b1e63035803        douglasq/alura-books:cap05   "npm start"         30 minutes ago      Up 30 minutes       0.0.0.0:8080->3000/tcp   condescending_poitras
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker rm -f 4b1e63035803
+
+4b1e63035803
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+158f5528ea4d        bridge              bridge              local
+0643e57cda2b        host                host                local
+c6633dd8eac4        minha-rede          bridge              local
+7aa972bae58a        none                null                local
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -d --name meu-mongo --network minha-rede mongo
+
+```
+* Na sequencia subir a aplicação e validar
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run --network minha-rede -d -p 8080:3000 douglasq/alura-books:cap05
+6eed50b4b9434388819a015c0483a26557357814cdef74a93653e86cceffea17
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED              STATUS              PORTS                    NAMES
+6eed50b4b943        douglasq/alura-books:cap05   "npm start"              14 seconds ago       Up 13 seconds       0.0.0.0:8080->3000/tcp   affectionate_cartwright
+320ce661dcbe        mongo                        "docker-entrypoint.s…"   About a minute ago   Up About a minute   27017/tcp                meu-mongo
+
+```
+# Check se os container's estão na mesma rede : minha-rede
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network inspect minha-rede
+[
+    {
+        "Name": "minha-rede",
+        "Id": "c6633dd8eac44a2dc9eadcc905b7c101be1d878de7da8f4e42da0fdc085e5728",
+        "Created": "2020-01-23T09:21:33.842032995-03:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.23.0.0/16",
+                    "Gateway": "172.23.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "320ce661dcbe0aa58d4589e68af2b1fbf88340756fcdfa14179b6bc2c2934cc1": {
+                "Name": "meu-mongo",
+                "EndpointID": "c79258d0f2812defbf7d6a321e681c1f357204474ed900d35334d2ec035024ea",
+                "MacAddress": "02:42:ac:17:00:02",
+                "IPv4Address": "172.23.0.2/16",
+                "IPv6Address": ""
+            },
+            "e2dfe58f28a7b31b7971f2918e65377d70557dd117366883ff0e5555ded50aaf": {
+                "Name": "quirky_gauss",
+                "EndpointID": "82ec03b95bb0ca37e1ecfa1e194cedb57fcc48ddb81487e1b0f76111a99e90f9",
+                "MacAddress": "02:42:ac:17:00:03",
+                "IPv4Address": "172.23.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+
+```
+
+![livros-salvos](

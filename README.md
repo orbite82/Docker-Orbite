@@ -1074,3 +1074,56 @@ a89a30980dac        alpine              "/bin/sh"           48 seconds ago      
 ]
 
 ```
+---
+
+# Criando uma rede local enmtre container, pingando pelo nome do container
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run --name meu-container1 -it -d --network minha-rede alpine
+e29077d4d11106ea7bfd784ddcb9a606b86afdd5de1bcde406d730b118699464
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run --name meu-container2 -it -d --network minha-rede alpine
+f3875faf450c6c3bfeeab6e1ec7fb2bab184ef61d51662bd01be0b7a3d1500ab
+
+```
+
+# Rede já foi atrelada
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+f3875faf450c        alpine              "/bin/sh"           51 seconds ago       Up 51 seconds                           meu-container2
+e29077d4d111        alpine              "/bin/sh"           About a minute ago   Up About a minute                       meu-container1
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+158f5528ea4d        bridge              bridge              local
+0643e57cda2b        host                host                local
+c6633dd8eac4        minha-rede          bridge              local
+7aa972bae58a        none                null                local
+
+```
+# Pingando o container pelo nome do 2 container
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container attach f3875faf450c
+/ # ping meu-container1
+PING meu-container1 (172.23.0.2): 56 data bytes
+64 bytes from 172.23.0.2: seq=0 ttl=64 time=0.269 ms
+64 bytes from 172.23.0.2: seq=1 ttl=64 time=0.131 ms
+64 bytes from 172.23.0.2: seq=2 ttl=64 time=0.149 ms
+64 bytes from 172.23.0.2: seq=3 ttl=64 time=0.172 ms
+^C
+--- meu-container1 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 0.131/0.180/0.269 ms
+/ #
+
+```
+---
+ 

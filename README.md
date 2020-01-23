@@ -807,3 +807,270 @@ docker.io/orbite82/node-teste-1:latest
 ```
 ---
 
+# Criando uma rede no docker
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network create --driver bridge minha-rede2
+58184c6ffe3811338d49c5f94f599d447a05757ddc798f8ad9715249b636dca2
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+158f5528ea4d        bridge              bridge              local
+0643e57cda2b        host                host                local
+c6633dd8eac4        minha-rede          bridge              local
+58184c6ffe38        minha-rede2         bridge              local
+7aa972bae58a        none                null                local
+
+```
+
+# Removendo uma rede criada no docker
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network rm minha-rede2
+minha-rede2
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+158f5528ea4d        bridge              bridge              local
+0643e57cda2b        host                host                local
+c6633dd8eac4        minha-rede          bridge              local
+7aa972bae58a        none                null                local
+
+```
+---
+
+# Atrelando minha rede criada em um container
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+158f5528ea4d        bridge              bridge              local
+0643e57cda2b        host                host                local
+c6633dd8eac4        minha-rede          bridge              local
+7aa972bae58a        none                null                local
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -it --name meu-container --network minha-rede alpine 
+/ # hostname -i
+172.23.0.2
+
+```
+
+```
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+a89a30980dac        alpine              "/bin/sh"           48 seconds ago      Up 47 seconds                           meu-container
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker inspect meu-container
+[
+    {
+        "Id": "a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b",
+        "Created": "2020-01-23T12:34:44.490180032Z",
+        "Path": "/bin/sh",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 32477,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2020-01-23T12:34:44.932913314Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:e7d92cdc71feacf90708cb59182d0df1b911f8ae022d29e8e95d75ca6a99776a",
+        "ResolvConfPath": "/var/lib/docker/containers/a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b/hostname",
+        "HostsPath": "/var/lib/docker/containers/a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b/hosts",
+        "LogPath": "/var/lib/docker/containers/a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b/a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b-json.log",
+        "Name": "/meu-container",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "minha-rede",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "Capabilities": null,
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/7dcafa906730c975e585e6d597bef5bf9be4a93b532f095c8d1337af79051727-init/diff:/var/lib/docker/overlay2/95186bfc05ad74cd1946a8d99447000e703cb14ef4240898bc3bf94c5cd80c9a/diff",
+                "MergedDir": "/var/lib/docker/overlay2/7dcafa906730c975e585e6d597bef5bf9be4a93b532f095c8d1337af79051727/merged",
+                "UpperDir": "/var/lib/docker/overlay2/7dcafa906730c975e585e6d597bef5bf9be4a93b532f095c8d1337af79051727/diff",
+                "WorkDir": "/var/lib/docker/overlay2/7dcafa906730c975e585e6d597bef5bf9be4a93b532f095c8d1337af79051727/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "a89a30980dac",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/sh"
+            ],
+            "Image": "alpine",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "3a82edfbe93ddde27404f568486d4f04256a55297fc88871c827fa00ca4dcd16",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/3a82edfbe93d",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+
+```
+# Quebra pra melhor visualizar o "Networks"
+
+```
+            "Networks": {
+                "minha-rede": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "a89a30980dac"
+                    ],
+                    "NetworkID": "c6633dd8eac44a2dc9eadcc905b7c101be1d878de7da8f4e42da0fdc085e5728",
+                    "EndpointID": "91a54c12a86d4612372da4684ad85cc8fa1032636af988f4f821cca651134398",
+                    "Gateway": "172.23.0.1",
+                    "IPAddress": "172.23.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:17:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+
+```

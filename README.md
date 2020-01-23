@@ -82,7 +82,7 @@ Total reclaimed space: 0B
 ```
 ---
 
-# Executando uma imagem Docker
+# Executar uma imagem Docker
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu
@@ -258,7 +258,7 @@ Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
 ```
 ---
 
-# Baixandou uma imagem com o numero e versão da distribuição especifica
+# Baixar uma imagem com o numero e versão da distribuição especifica
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu:18.04
@@ -567,7 +567,7 @@ Initializing Tue Jan 21 13:19:36 UTC 2020
 ```
 ---
 
-# Salvando dados com volumes
+# Salvar dados com volumes
 
 ```
 ┌─[torbite]@[BIO-02059]:~
@@ -668,7 +668,7 @@ Server is listening on port 3000
 ```
 ---
 
-# Alterando a aplicação no quente para i-love-very-docker
+# Alterar a aplicação no quente para i-love-very-docker
 
 ![i-love-very-docker](https://github.com/orbite82/Docker-Orbite/blob/master/i-love-very-docker.png)
 
@@ -851,7 +851,7 @@ c6633dd8eac4        minha-rede          bridge              local
 ```
 ---
 
-# Atrelando minha-rede criada para docker em containers
+# Atrelar minha-rede criada para docker em containers
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -1084,7 +1084,7 @@ a89a30980dac        alpine              "/bin/sh"           48 seconds ago      
 ```
 ---
 
-# Criando uma rede local enmtre container, pingando pelo nome do container
+# Criar uma rede local enmtre container, pingando pelo nome do container
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -1115,7 +1115,7 @@ c6633dd8eac4        minha-rede          bridge              local
 7aa972bae58a        none                null                local
 
 ```
-# Pingando o container pelo nome do 2 container
+# Pingar o container pelo nome do 2 container
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite

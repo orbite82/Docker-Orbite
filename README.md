@@ -281,7 +281,7 @@ Status: Downloaded newer image for ubuntu:14.04
 ```
 ---
 
-# Executando umcontainer em BackGround
+# Executar um container em BackGround
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
@@ -344,7 +344,7 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
 ```
 ---
 
-# Adicionando foto e acessando aplicação pela porta
+# Acessar aplicação pela porta Hello Docker!
 
 ![hello docker image 1](https://github.com/orbite82/Docker-Orbite/blob/master/hello%20docker.png)
 

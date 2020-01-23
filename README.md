@@ -1134,4 +1134,50 @@ round-trip min/avg/max = 0.131/0.180/0.269 ms
 
 ```
 ---
+# Pegar dados de um banco via docker
+
+* Passo 1 logar no github baixar a imagem da aplicação 
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker login
+Authenticating with existing credentials...
+WARNING! Your password will be stored unencrypted in /home/torbite/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker pull douglasq/alura-books:cap05
+cap05: Pulling from douglasq/alura-books
+ad74af05f5a2: Pull complete 
+2b032b8bbe8b: Pull complete 
+a9a5b35f6ead: Pull complete 
+3245b5a1c52c: Pull complete 
+afa075743392: Pull complete 
+9fb9f21641cd: Pull complete 
+b1074d048a61: Pull complete 
+602b2c2b7041: Pull complete 
+af5a13f5922f: Pull complete 
+997eb00aa53e: Pull complete 
+Digest: sha256:486bbfd2018823d7a6613c7fa532574371ac2aa40cf703178379ec08a340d25d
+Status: Downloaded newer image for douglasq/alura-books:cap05
+docker.io/douglasq/alura-books:cap05
+
+```
+`Obs:` https://hub.docker.com/r/douglasq/alura-books/
  
+versão 05 e 06 disponível
+
+---
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -d -p 8080:3000 douglasq/alura-books:cap05
+4b1e63035803ca9218e87cd307f45901c4b170e3d88f9530d70831b4795d6e7f
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE                        COMMAND             CREATED             STATUS              PORTS                    NAMES
+4b1e63035803        douglasq/alura-books:cap05   "npm start"         10 seconds ago      Up 10 seconds       0.0.0.0:8080->3000/tcp   condescending_poitras  
+
+```

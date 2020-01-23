@@ -6,9 +6,16 @@
 * `https://www.mundodocker.com.br`
 * `https://docs.docker.com/`
 
-# Docker-Orbite
+# Docker-Orbite, Estudo do Basico ao Avançado com Docker
 
-# Estudo do Basico ao Avançado com Docker
+# Instalação do docker via terminal
+
+---
+```
+
+```
+
+# Docker Hello World
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run hello-world
@@ -80,10 +87,11 @@ Total reclaimed space: 0B
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu
+
 ```
 ---
 
-# Executando uma imagem Docker e com intereção
+# Executar uma imagem Docker e com intereção
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
@@ -115,7 +123,7 @@ cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      
 ```
 ---
 
-# Executando um comando dentro da imagem do container e saindo
+# Executar um comando dentro da imagem do container e saindo
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu echo "Orbite"
@@ -124,7 +132,7 @@ Orbite
 ```
 ---
 
-# Executando um comando dentro da imagem do container e interagindo
+# Executar um comando dentro da imagem do container e interagindo
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
@@ -134,7 +142,7 @@ root@2e1f9f6a6c41:/# exit
 ```
 ---
 
-# Iniciando uma imagem de um container especifico
+# Iniciar uma imagem de um container especifico
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start 2e1f9f6a6c41
@@ -149,7 +157,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 ---
 
-# Parando uma imagem de um container especifico
+# Parar uma imagem de um container especifico
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
@@ -159,7 +167,7 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
 ```
 ---
 
-# Iniciando uma imagem de um container especifico e imteragindo
+# Iniciar uma imagem de um container especifico e imteragindo
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start -a -i 2e1f9f6a6c41
@@ -170,7 +178,7 @@ root@2e1f9f6a6c41:/# exit
 
 ---
 
-# Removendo imagem de um container baixada em sua máquina
+# Remover a imagem de um container baixada em sua máquina
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
@@ -197,7 +205,7 @@ ec5
 ```
 ---
 
-# Removendo todas as Imagens de containers baixadas em sua máquina
+# Remover todas as Imagens de containers baixadas em sua máquina
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
@@ -217,7 +225,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 ---
 
-# Listando as imagens baixadas em sua máquina do Docker
+# Listar as imagens baixadas em sua máquina do Docker
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker images
@@ -238,7 +246,7 @@ k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        2 y
 ```
 ---
 
-# Removendo uma imagem Docker baixada em sua máquina
+# Remover uma imagem Docker baixada em sua máquina
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker rmi hello-world
@@ -302,8 +310,8 @@ d16daa7fb5a3
 
 
 # Docker com -P para comunicar com container
----
 
+---
 # Antes
 
 ```
@@ -587,7 +595,7 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
 
 ```
 ---
-# Salvando e direcionando os dados, logs e etc... do container na sua pasta local
+# Salvar e direcionar os dados, logs e etc... do container na sua pasta local
 
 ```
 ┌─[torbite]@[BIO-02059]:~
@@ -603,7 +611,7 @@ root@d44133277375:/var/www# echo "Arquivo criado dentro deste volume" > novo-arq
 
 ---
 
-# Rodando o código dentro de um container
+# Rodar o código dentro de um container
 
 ```
 ┌─[torbite]@[BIO-02059]:~
@@ -635,7 +643,7 @@ npm ERR!     /root/.npm/_logs/2020-01-22T18_15_53_818Z-debug.log
 ```
 ---
 
-# Corrigindo o ERR! , informando qual diretório deve ser executado
+# Corrigir o ERR! , informando qual diretório deve ser executado
 
 * vamos passar a flag `-w` (Working Directory)
 ```
@@ -679,7 +687,7 @@ Server is listening on port 3000
 ```
 ---
 
-# Criando um Dockerfile
+# Criar um Dockerfile
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -750,7 +758,8 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 ```
 ---
 
-# Subindo imagem no Docker Hub
+# Subir uma imagem no Docker Hub
+---
 
 # Docker Login
 
@@ -793,7 +802,7 @@ latest: digest: sha256:6065e5250f7f97eb467ba40ea8c9ef4d7d6dee357465879197b01b177
 ![dockerhub1](https://github.com/orbite82/Docker-Orbite/blob/master/dockerhub1.png)
 
 
-# Fazendo um Docker Pull para testar
+# Docker Pull para testar
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
@@ -807,7 +816,7 @@ docker.io/orbite82/node-teste-1:latest
 ```
 ---
 
-# Criando uma rede no docker
+# Criar uma rede no docker
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -825,7 +834,7 @@ c6633dd8eac4        minha-rede          bridge              local
 
 ```
 
-# Removendo uma rede criada no docker
+# Remover uma rede criada no docker
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -843,7 +852,7 @@ c6633dd8eac4        minha-rede          bridge              local
 ```
 ---
 
-# Atrelando minha rede criada em um container
+# Atrelando minha-rede criada para docker em containers
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -1047,7 +1056,7 @@ a89a30980dac        alpine              "/bin/sh"           48 seconds ago      
             "MacAddress": "",
 
 ```
-# Quebra pra melhor visualizar o "Networks"
+# Quebra de linha para melhor visualizar o "Networks"
 
 ```
             "Networks": {

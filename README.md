@@ -1184,6 +1184,4 @@ CONTAINER ID        IMAGE                        COMMAND             CREATED    
 
 ![aplicacao-livro](https://github.com/orbite82/Docker-Orbite/blob/master/aplicacao-livros.png)
 
-```
 
-```

@@ -1179,8 +1179,9 @@ versão 05 e 06 disponível
 └──> $ sudo docker ps
 CONTAINER ID        IMAGE                        COMMAND             CREATED             STATUS              PORTS                    NAMES
 4b1e63035803        douglasq/alura-books:cap05   "npm start"         10 seconds ago      Up 10 seconds       0.0.0.0:8080->3000/tcp   condescending_poitras  
-
+```
 ---
+
 ![aplicacao-livro](https://github.com/orbite82/Docker-Orbite/blob/master/aplicacao-livros.png)
 
 ---

@@ -1540,3 +1540,88 @@ c747cbdb417b        orbite/alurabooks   "npm start"              21 minutes ago 
 
 ```
 
+```
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker-compose ps
+           Name                        Command             State              Ports           
+----------------------------------------------------------------------------------------------
+alura-books-1                npm start                     Up      0.0.0.0:32772->3000/tcp    
+alura-books-2                npm start                     Up      0.0.0.0:32771->3000/tcp    
+alura-books-3                npm start                     Up      0.0.0.0:32773->3000/tcp    
+aluradockercap06_mongodb_1   docker-entrypoint.sh mongod   Up      27017/tcp                  
+nginx                        nginx -g daemon off;          Up      443/tcp, 0.0.0.0:80->80/tcp
+
+```
+# Revomer e parar os container's docker-compose
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker-compose down
+
+Stopping nginx                      ... done
+Stopping alura-books-2              ... done
+Stopping alura-books-3              ... done
+Stopping alura-books-1              ... done
+Stopping aluradockercap06_mongodb_1 ... done
+Removing nginx                      ... done
+Removing alura-books-2              ... done
+Removing alura-books-3              ... done
+Removing alura-books-1              ... done
+Removing aluradockercap06_mongodb_1 ... done
+Removing network aluradockercap06_production-network
+
+```
+---
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker-compose ps
+Name   Command   State   Ports
+------------------------------
+
+```
+# Teste ping entre os container's
+
+* Ping entre nome e node dos container's
+
+```
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker-compose up -d
+Starting aluradockercap06_mongodb_1 ... 
+Starting aluradockercap06_mongodb_1 ... done
+Starting alura-books-2 ... 
+Starting alura-books-2
+Starting alura-books-3 ... 
+Starting alura-books-1 ... 
+Starting alura-books-3
+Starting alura-books-2 ... done
+Starting nginx ... 
+Starting nginx ... done
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker exec -it alura-books-1 ping alura-books-2
+PING alura-books-2 (172.19.0.3) 56(84) bytes of data.
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=1 ttl=64 time=0.080 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=2 ttl=64 time=0.040 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=3 ttl=64 time=0.040 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=4 ttl=64 time=0.049 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=5 ttl=64 time=0.105 ms
+^C
+--- alura-books-2 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4085ms
+rtt min/avg/max/mdev = 0.040/0.062/0.105/0.027 ms
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker exec -it alura-books-1 ping node2
+PING node2 (172.19.0.3) 56(84) bytes of data.
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=1 ttl=64 time=0.074 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=2 ttl=64 time=0.127 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=3 ttl=64 time=0.105 ms
+64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=4 ttl=64 time=0.131 ms
+^C
+--- node2 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3048ms
+rtt min/avg/max/mdev = 0.074/0.109/0.131/0.023 ms
+
+```

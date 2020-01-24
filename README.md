@@ -166,7 +166,7 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
 ```
 ---
 
-# Iniciar uma imagem de um container especifico e imteragindo
+# Iniciar uma imagem de um container especifico e interagindo
 
 ```
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start -a -i 2e1f9f6a6c41
@@ -231,17 +231,29 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker images
 
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
 ubuntu                               latest              ccc6e87d482b        40 hours ago        64.2MB
-k8s.gcr.io/kube-proxy                v1.17.0             7d54289267dc        5 weeks ago         116MB
-k8s.gcr.io/kube-apiserver            v1.17.0             0cae8d5cc64c        5 weeks ago         171MB
-k8s.gcr.io/kube-scheduler            v1.17.0             78c190f736b1        5 weeks ago         94.4MB
-k8s.gcr.io/kube-controller-manager   v1.17.0             5eb3b7486872        5 weeks ago         161MB
-gcr.io/kubernetes-helm/tiller        v2.16.1             1f92aa902d73        2 months ago        91.2MB
-weaveworks/weave-npc                 2.6.0               5105e13e253e        2 months ago        34.9MB
-weaveworks/weave-kube                2.6.0               174e0e8ef23d        2 months ago        114MB
-k8s.gcr.io/coredns                   1.6.5               70f311871ae1        2 months ago        41.6MB
-k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        2 months ago        288MB
-hello-world                          latest              fce289e99eb9        12 months ago       1.84kB
-k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        2 years ago         742kB
+
+```
+---
+
+# Ou
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker image list
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+orbite/nginx                         latest              bbbb318620f5        4 hours ago         127MB
+orbite/alurabooks                    latest              5dde97f3aef0        4 hours ago         959MB
+orbite82/node-teste-1                latest              c90e3bf3eace        46 hours ago        943MB
+nginx                                latest              5ad3bd0e67a9        2 days ago          127MB
+alpine                               latest              e7d92cdc71fe        6 days ago          5.59MB
+mongo                                latest              105a8b77784b        6 days ago          364MB
+teste                                latest              96f1e68cc1ea        7 days ago          808MB
+ubuntu                               18.04               ccc6e87d482b        8 days ago          64.2MB
+ubuntu                               latest              ccc6e87d482b        8 days ago          64.2MB
+node                                 latest              f7756628c1ee        2 weeks ago         939MB
+ubuntu                               14.04               6e4f1fe62ff1        5 weeks ago         197MB
+
+
 ```
 ---
 
@@ -370,6 +382,60 @@ CONTAINER ID        IMAGE                       COMMAND                  CREATED
 11bd90a2ca10        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   9 seconds ago       Up 8 seconds        0.0.0.0:32771->80/tcp, 0.0.0.0:32770->443/tcp   orbite-container
 
 ```
+---
+# Criar uma imagem docker e personalizar
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container run -it --name criar-imagens-docker ubuntu:18.04 bash
+root@20c489bf2ff0:/# apt-get update
+root@20c489bf2ff0:/# exit
+exit
+
+```
+---
+# Commit como fazer uma imagem co commit anterior 
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker commit criar-imagens-docker nossoubuntu:nginx
+sha256:7d54931606f8e8a571ef85b72a8ea65d84617df6d4c37f09e452ccb2e5ad3858
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ 
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+nossoubuntu                          nginx               7d54931606f8        16 seconds ago      152MB
+orbite/nginx                         latest              bbbb318620f5        4 hours ago         127MB
+orbite/alurabooks                    latest              5dde97f3aef0        4 hours ago         959MB
+orbite82/node-teste-1                latest              c90e3bf3eace        47 hours ago        943MB
+nginx                                latest              5ad3bd0e67a9        2 days ago          127MB
+alpine                               latest              e7d92cdc71fe        6 days ago          5.59MB
+mongo                                latest              105a8b77784b        6 days ago          364MB
+teste                                latest              96f1e68cc1ea        7 days ago          808MB
+ubuntu                               18.04               ccc6e87d482b        8 days ago          64.2MB
+ubuntu                               latest              ccc6e87d482b        8 days ago          64.2MB
+node                                 latest              f7756628c1ee        2 weeks ago         939MB
+ubuntu                               14.04               6e4f1fe62ff1        5 weeks ago         197MB
+
+```
+`OBS:`sudo docker image list Ou sudo docker image list
+
+---
+
+# Testar imgem comitada com nginx nos passos anteriores
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container run -it --rm nossoubuntu:nginx dpkg -l nginx
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version      Architecture Description
++++-==============-============-============-=================================
+ii  nginx          1.14.0-0ubun all          small, powerful, scalable web/pro
+
+```
+`OBS:` Não é a melhor prática fazer desta forma.
 ---
 
 # Programa para check security via Docker
@@ -757,7 +823,7 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 ```
 ---
 
-# Subir uma imagem no Docker Hub
+# Subir uma imagem no DockerHub
 ---
 
 # Docker Login
@@ -775,6 +841,25 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 
 ```
+---
+
+# Tag na imagem docker
+
+```
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+meuubuntu                            nginx               0d6db5dc3a86        10 minutes ago      206MB
+nossoubuntu                          nginx               7d54931606f8        24 minutes ago      152MB
+orbite/nginx                         latest              bbbb318620f5        5 hours ago         127MB
+
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker tag orbite/nginx orbite82/orbite/nginx:latest
+
+```
+---
 
 # Docker Push
 
@@ -1461,21 +1546,7 @@ ubuntu                               18.04               ccc6e87d482b        8 d
 ubuntu                               latest              ccc6e87d482b        8 days ago          64.2MB
 node                                 latest              f7756628c1ee        2 weeks ago         939MB
 ubuntu                               14.04               6e4f1fe62ff1        5 weeks ago         197MB
-k8s.gcr.io/kube-proxy                v1.17.0             7d54289267dc        6 weeks ago         116MB
-k8s.gcr.io/kube-scheduler            v1.17.0             78c190f736b1        6 weeks ago         94.4MB
-k8s.gcr.io/kube-controller-manager   v1.17.0             5eb3b7486872        6 weeks ago         161MB
-k8s.gcr.io/kube-apiserver            v1.17.0             0cae8d5cc64c        6 weeks ago         171MB
-gcr.io/kubernetes-helm/tiller        v2.16.1             1f92aa902d73        2 months ago        91.2MB
-weaveworks/weave-npc                 2.6.0               5105e13e253e        2 months ago        34.9MB
-weaveworks/weave-kube                2.6.0               174e0e8ef23d        2 months ago        114MB
-k8s.gcr.io/coredns                   1.6.5               70f311871ae1        2 months ago        41.6MB
-k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        3 months ago        288MB
-node                                 12.2.0-alpine       f391dabf9dce        8 months ago        77.7MB
-docker/docker-bench-security         latest              0037349aef7e        12 months ago       51.6MB
-k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        2 years ago         742kB
-douglasq/alura-books                 cap06               fd6d4687be9f        2 years ago         691MB
-douglasq/alura-books                 cap05               ebff169e5013        2 years ago         691MB
-dockersamples/static-site            latest              f589ccde7957        3 years ago         191MB
+
 
 ```
 # Resultado do teste do Load Balancer localhost:80

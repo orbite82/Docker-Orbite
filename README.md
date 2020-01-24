@@ -1482,33 +1482,33 @@ dockersamples/static-site            latest              f589ccde7957        3 y
 
 * Resultado do docker comnpose
 
-![docker_compose_up]()
+![docker_compose_up](https://github.com/orbite82/Docker-Orbite/blob/master/docker_compose_up.png)
 
 * Localhost:80 teste
 
-![locahost:80]()
+![locahost:80](https://github.com/orbite82/Docker-Orbite/blob/master/localhost:80.png)
 
 * Teste do Load Balancer 
 
-![nginx_node_teste]()
+![nginx_node_teste](https://github.com/orbite82/Docker-Orbite/blob/master/nginx_node_teste.png)
 
 * Teste localhost/seed
 
-![teste_BARRA_seed]()
+![teste_BARRA_seed](https://github.com/orbite82/Docker-Orbite/blob/master/teste_BARRA_seed.png)
 
 * Teste localhost/seed 2
 
-![teste_BARRA_seed2]()
+![teste_BARRA_seed2](https://github.com/orbite82/Docker-Orbite/blob/master/teste_BARRA_seed2.png)
 
 * Clique em voltar com a seta do navegador e F5
 
-![teste_BARRA_seed3]()
+![teste_BARRA_seed3](https://github.com/orbite82/Docker-Orbite/blob/master/teste_BARRA_seed3.png)
 
 # Validar ok
 
 * Após validar a aplicação, ctrl + c
 
-![ctrl_c]()
+![ctrl_c](https://github.com/orbite82/Docker-Orbite/blob/master/ctrl_c.png)
 
 ---
 

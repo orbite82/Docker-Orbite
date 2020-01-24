@@ -1292,4 +1292,251 @@ CONTAINER ID        IMAGE                        COMMAND                  CREATE
 
 # Automatizando com Docker Compose
 
+---
+* Instalar o docker compose
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo apt install docker-compose
+
+```
+---
+* Executar na raiz do projeto docker compose
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ ls
+config  database.js  docker  docker-compose.yml  models  package.json  public  README.md  routes  server.js  views
+
+```
+* Executar o comando docker-compose build
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker-compose build
+mongodb uses an image, skipping
+Building node2
+Step 1/8 : FROM node:latest
+ ---> f7756628c1ee
+Step 2/8 : MAINTAINER Douglas Quintanilha
+ ---> Running in 6bd30be7a524
+Removing intermediate container 6bd30be7a524
+ ---> 4e775b15f8d7
+Step 3/8 : ENV NODE_ENV=development
+ ---> Running in c20145ceee33
+Removing intermediate container c20145ceee33
+ ---> bc2548c79594
+Step 4/8 : COPY . /var/www
+ ---> 924a18b9ce7b
+Step 5/8 : WORKDIR /var/www
+ ---> Running in 26ab5c161077
+Removing intermediate container 26ab5c161077
+ ---> a1252d8f149b
+Step 6/8 : RUN npm install
+ ---> Running in efb83f21bbb2
+npm notice created a lockfile as package-lock.json. You should commit this file.
+added 117 packages from 110 contributors and audited 220 packages in 11.229s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Removing intermediate container efb83f21bbb2
+ ---> b2617c0f9387
+Step 7/8 : ENTRYPOINT ["npm", "start"]
+ ---> Running in 24bef6095469
+Removing intermediate container 24bef6095469
+ ---> a180f5389fc3
+Step 8/8 : EXPOSE 3000
+ ---> Running in e602d11cb6e7
+Removing intermediate container e602d11cb6e7
+ ---> 5dde97f3aef0
+Successfully built 5dde97f3aef0
+Successfully tagged orbite/alurabooks:latest
+Building node3
+Step 1/8 : FROM node:latest
+ ---> f7756628c1ee
+Step 2/8 : MAINTAINER Douglas Quintanilha
+ ---> Using cache
+ ---> 4e775b15f8d7
+Step 3/8 : ENV NODE_ENV=development
+ ---> Using cache
+ ---> bc2548c79594
+Step 4/8 : COPY . /var/www
+ ---> Using cache
+ ---> 924a18b9ce7b
+Step 5/8 : WORKDIR /var/www
+ ---> Using cache
+ ---> a1252d8f149b
+Step 6/8 : RUN npm install
+ ---> Using cache
+ ---> b2617c0f9387
+Step 7/8 : ENTRYPOINT ["npm", "start"]
+ ---> Using cache
+ ---> a180f5389fc3
+Step 8/8 : EXPOSE 3000
+ ---> Using cache
+ ---> 5dde97f3aef0
+Successfully built 5dde97f3aef0
+Successfully tagged orbite/alurabooks:latest
+Building node1
+Step 1/8 : FROM node:latest
+ ---> f7756628c1ee
+Step 2/8 : MAINTAINER Douglas Quintanilha
+ ---> Using cache
+ ---> 4e775b15f8d7
+Step 3/8 : ENV NODE_ENV=development
+ ---> Using cache
+ ---> bc2548c79594
+Step 4/8 : COPY . /var/www
+ ---> Using cache
+ ---> 924a18b9ce7b
+Step 5/8 : WORKDIR /var/www
+ ---> Using cache
+ ---> a1252d8f149b
+Step 6/8 : RUN npm install
+ ---> Using cache
+ ---> b2617c0f9387
+Step 7/8 : ENTRYPOINT ["npm", "start"]
+ ---> Using cache
+ ---> a180f5389fc3
+Step 8/8 : EXPOSE 3000
+ ---> Using cache
+ ---> 5dde97f3aef0
+Successfully built 5dde97f3aef0
+Successfully tagged orbite/alurabooks:latest
+Building nginx
+Step 1/8 : FROM nginx:latest
+latest: Pulling from library/nginx
+8ec398bc0356: Pull complete
+a53c868fbde7: Pull complete
+79daf9dd140d: Pull complete
+Digest: sha256:70821e443be75ea38bdf52a974fd2271babd5875b2b1964f05025981c75a6717
+Status: Downloaded newer image for nginx:latest
+ ---> 5ad3bd0e67a9
+Step 2/8 : MAINTAINER Douglas Quintanilha
+ ---> Running in 4188268b2bad
+Removing intermediate container 4188268b2bad
+ ---> 9b7643d64838
+Step 3/8 : COPY /public /var/www/public
+ ---> 059bf9a43194
+Step 4/8 : COPY /docker/config/nginx.conf /etc/nginx/nginx.conf
+ ---> e36952bd343d
+Step 5/8 : RUN chmod 755 -R /var/www/public
+ ---> Running in a88c419265cc
+Removing intermediate container a88c419265cc
+ ---> 38599d1f7619
+Step 6/8 : EXPOSE 80 443
+ ---> Running in c8dfa996b016
+Removing intermediate container c8dfa996b016
+ ---> f87fcc5d6ca4
+Step 7/8 : ENTRYPOINT ["nginx"]
+ ---> Running in 2f93eafa49df
+Removing intermediate container 2f93eafa49df
+ ---> 13e0ef4046a1
+Step 8/8 : CMD ["-g", "daemon off;"]
+ ---> Running in a47be8d2a51e
+Removing intermediate container a47be8d2a51e
+ ---> bbbb318620f5
+Successfully built bbbb318620f5
+Successfully tagged orbite/nginx:latest
+
+```
+---
+* Verificar imagens
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+orbite/nginx                         latest              bbbb318620f5        6 minutes ago       127MB
+orbite/alurabooks                    latest              5dde97f3aef0        6 minutes ago       959MB
+orbite82/node-teste-1                latest              c90e3bf3eace        42 hours ago        943MB
+nginx                                latest              5ad3bd0e67a9        2 days ago          127MB
+alpine                               latest              e7d92cdc71fe        6 days ago          5.59MB
+mongo                                latest              105a8b77784b        6 days ago          364MB
+teste                                latest              96f1e68cc1ea        6 days ago          808MB
+ubuntu                               18.04               ccc6e87d482b        8 days ago          64.2MB
+ubuntu                               latest              ccc6e87d482b        8 days ago          64.2MB
+node                                 latest              f7756628c1ee        2 weeks ago         939MB
+ubuntu                               14.04               6e4f1fe62ff1        5 weeks ago         197MB
+k8s.gcr.io/kube-proxy                v1.17.0             7d54289267dc        6 weeks ago         116MB
+k8s.gcr.io/kube-scheduler            v1.17.0             78c190f736b1        6 weeks ago         94.4MB
+k8s.gcr.io/kube-controller-manager   v1.17.0             5eb3b7486872        6 weeks ago         161MB
+k8s.gcr.io/kube-apiserver            v1.17.0             0cae8d5cc64c        6 weeks ago         171MB
+gcr.io/kubernetes-helm/tiller        v2.16.1             1f92aa902d73        2 months ago        91.2MB
+weaveworks/weave-npc                 2.6.0               5105e13e253e        2 months ago        34.9MB
+weaveworks/weave-kube                2.6.0               174e0e8ef23d        2 months ago        114MB
+k8s.gcr.io/coredns                   1.6.5               70f311871ae1        2 months ago        41.6MB
+k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        3 months ago        288MB
+node                                 12.2.0-alpine       f391dabf9dce        8 months ago        77.7MB
+docker/docker-bench-security         latest              0037349aef7e        12 months ago       51.6MB
+k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        2 years ago         742kB
+douglasq/alura-books                 cap06               fd6d4687be9f        2 years ago         691MB
+douglasq/alura-books                 cap05               ebff169e5013        2 years ago         691MB
+dockersamples/static-site            latest              f589ccde7957        3 years ago         191MB
+
+```
+# Resultado do teste do Load Balancer localhost:80
+
+* Resultado do docker comnpose
+
+![docker_compose_up]()
+
+* Localhost:80 teste
+
+![locahost:80]()
+
+* Teste do Load Balancer 
+
+![nginx_node_teste]()
+
+* Teste localhost/seed
+
+![teste_BARRA_seed]()
+
+* Teste localhost/seed 2
+
+![teste_BARRA_seed2]()
+
+* Clique em voltar com a seta do navegador e F5
+
+![teste_BARRA_seed3]()
+
+# Validar ok
+
+* Após validar a aplicação, ctrl + c
+
+![ctrl_c]()
+
+---
+
+# Docker container -d e liberar o terminal após acompanhar sua aplicação operando
+
+```
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker-compose up -d
+Starting aluradockercap06_mongodb_1 ... 
+Starting aluradockercap06_mongodb_1 ... done
+Starting alura-books-2 ... 
+Starting alura-books-3 ... 
+Starting alura-books-2
+Starting alura-books-1 ... 
+Starting alura-books-3
+Starting alura-books-3 ... done
+Starting nginx ... 
+Starting nginx ... done
+
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
+cc9ecbfae755        orbite/nginx        "nginx -g 'daemon of…"   21 minutes ago      Up About a minute   0.0.0.0:80->80/tcp, 443/tcp   nginx
+89f7a3c98e30        orbite/alurabooks   "npm start"              21 minutes ago      Up About a minute   0.0.0.0:32771->3000/tcp       alura-books-2
+0cb2635e4ea7        orbite/alurabooks   "npm start"              21 minutes ago      Up About a minute   0.0.0.0:32773->3000/tcp       alura-books-3
+c747cbdb417b        orbite/alurabooks   "npm start"              21 minutes ago      Up About a minute   0.0.0.0:32772->3000/tcp       alura-books-1
+3995eb16eb7a        mongo               "docker-entrypoint.s…"   21 minutes ago      Up About a minute   27017/tcp                     aluradockercap06_mongodb_1
+
+```
 

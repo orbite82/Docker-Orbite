@@ -438,6 +438,185 @@ ii  nginx          1.14.0-0ubun all          small, powerful, scalable web/pro
 `OBS:` Não é a melhor prática fazer desta forma.
 ---
 
+# Tutorial Parte 1 - Criar, Push e Push Image DockerHub
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -it -d ubuntu
+44483e6005fb49341cc7f7b0f9749e7e9a8ce30bc4dceb755588126e4660df0e
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps -a
+CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS                      PORTS               NAMES
+44483e6005fb        ubuntu                     "/bin/bash"         5 minutes ago       Up 5 minutes                                    tender_hertz
+795c8ddb9002        orbite82/modified-ubuntu   "bash"              37 minutes ago      Up 37 minutes                                   infallible_proskuriakova
+1d3c04acf556        ubuntu                     "/bin/bash"         50 minutes ago      Exited (0) 45 minutes ago                       lucid_lovelace
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker exec -it 44483e6005fb bash
+root@44483e6005fb:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@44483e6005fb:/# mkdir TEST_DOCKER
+root@44483e6005fb:/# ls
+TEST_DOCKER  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@44483e6005fb:/# exit
+exit
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              ccc6e87d482b        10 days ago         64.2MB
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker stop 44483e6005fb
+44483e6005fb
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker commit 44483e6005fb orbite82/modified2-ubuntu
+sha256:ad56effc7a3479b2ca0f871e5c1589f606419f9ec8643b6543f987fe8d285459
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+orbite82/modified2-ubuntu   latest              ad56effc7a34        12 seconds ago      64.2MB
+orbite82/modified-ubuntu    latest              86920ea1596a        42 minutes ago      64.2MB
+ubuntu                      latest              ccc6e87d482b        10 days ago         64.2MB
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker push orbite82/modified2-ubuntu
+The push refers to repository [docker.io/orbite82/modified2-ubuntu]
+f552bf8ea140: Pushed 
+f55aa0bd26b8: Mounted from library/ubuntu 
+1d0dfb259f6a: Mounted from library/ubuntu 
+21ec61b65b20: Mounted from library/ubuntu 
+43c67172d1d1: Mounted from library/ubuntu 
+latest: digest: sha256:52c80f1b350d0cbf8460d98bd97443787f174f527b10730bfaaaf0f8148e7aa9 size: 1359
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker push orbite82/modified-ubuntu
+The push refers to repository [docker.io/orbite82/modified-ubuntu]
+51ab982046db: Pushed 
+f55aa0bd26b8: Mounted from orbite82/modified2-ubuntu 
+1d0dfb259f6a: Mounted from orbite82/modified2-ubuntu 
+21ec61b65b20: Mounted from orbite82/modified2-ubuntu 
+43c67172d1d1: Mounted from orbite82/modified2-ubuntu 
+latest: digest: sha256:ef3572cca778113e6033eae4b3bc03d81fe6ec82640d110d499dcd89cba611f1 size: 1359
+
+```
+---
+# Tutoria Parte 2 - Removendo e testando as images do DockerHub
+
+```
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS              PORTS               NAMES
+795c8ddb9002        orbite82/modified-ubuntu   "bash"              About an hour ago   Up About an hour                        infallible_proskuriakova
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker stop 795c8ddb9002
+795c8ddb9002
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker rm -f  795c8ddb9002
+795c8ddb9002
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                         PORTS               NAMES
+44483e6005fb        ubuntu              "/bin/bash"         35 minutes ago      Exited (0) 27 minutes ago                          tender_hertz
+1d3c04acf556        ubuntu              "/bin/bash"         About an hour ago   Exited (0) About an hour ago                       lucid_lovelace
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker rm 44483e6005fb
+44483e6005fb
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker rm 1d3c04acf556
+1d3c04acf556
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+orbite82/modified2-ubuntu   latest              ad56effc7a34        26 minutes ago      64.2MB
+orbite82/modified-ubuntu    latest              86920ea1596a        About an hour ago   64.2MB
+ubuntu                      latest              ccc6e87d482b        10 days ago         64.2MB
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker rmi orbite82/modified2-ubuntu orbite82/modified-ubuntu
+Untagged: orbite82/modified2-ubuntu:latest
+Untagged: orbite82/modified2-ubuntu@sha256:52c80f1b350d0cbf8460d98bd97443787f174f527b10730bfaaaf0f8148e7aa9
+Deleted: sha256:ad56effc7a3479b2ca0f871e5c1589f606419f9ec8643b6543f987fe8d285459
+Deleted: sha256:e4874b6fa1d0b02b119a7a8e325b96fae07e39c55ab388f66a567d1239c2fa95
+Untagged: orbite82/modified-ubuntu:latest
+Untagged: orbite82/modified-ubuntu@sha256:ef3572cca778113e6033eae4b3bc03d81fe6ec82640d110d499dcd89cba611f1
+Deleted: sha256:86920ea1596a074d3099d88e19eec5c9953d25ca324b6269d8b3ff33b6ab31df
+Deleted: sha256:a78b22468a57b10cb09214890810c7dd1cca347d7a997b56bb8c076cf1b653c2
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker rmi ubuntu
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:8d31dad0c58f552e890d68bbfb735588b6b820a46e459672d96e585871acc110
+Deleted: sha256:ccc6e87d482b79dd1645affd958479139486e47191dfe7a997c862d89cd8b4c0
+Deleted: sha256:d1b7fedd4314279a7c28d01177ff56bcff65300f6d41655394bf5d8b788567f6
+Deleted: sha256:340bed96497252624f5e4b0f42accfe7edbb7a01047e2bb5a8142b2464008e73
+Deleted: sha256:6357c335cdfcc3a120e288bbd203bf4c861a14245ce5094634ee097e5217085b
+Deleted: sha256:43c67172d1d182ca5460fc962f8f053f33028e0a3a1d423e05d91b532429e73d
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -it -d orbite82/modified2-ubuntu
+Unable to find image 'orbite82/modified2-ubuntu:latest' locally
+latest: Pulling from orbite82/modified2-ubuntu
+5c939e3a4d10: Pull complete 
+c63719cdbe7a: Pull complete 
+19a861ea6baf: Pull complete 
+651c9d2d6c4f: Pull complete 
+9be446994aba: Pull complete 
+Digest: sha256:52c80f1b350d0cbf8460d98bd97443787f174f527b10730bfaaaf0f8148e7aa9
+Status: Downloaded newer image for orbite82/modified2-ubuntu:latest
+3123957f0910acf065616f723a6afe593e82dcb18010817e968329457619df1f
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+orbite82/modified2-ubuntu   latest              ad56effc7a34        34 minutes ago      64.2MB
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker run -it -d orbite82/modified2-ubuntu
+Unable to find image 'orbite82/modified2-ubuntu:latest' locally
+latest: Pulling from orbite82/modified2-ubuntu
+5c939e3a4d10: Pull complete 
+c63719cdbe7a: Pull complete 
+19a861ea6baf: Pull complete 
+651c9d2d6c4f: Pull complete 
+9be446994aba: Pull complete 
+Digest: sha256:52c80f1b350d0cbf8460d98bd97443787f174f527b10730bfaaaf0f8148e7aa9
+Status: Downloaded newer image for orbite82/modified2-ubuntu:latest
+3123957f0910acf065616f723a6afe593e82dcb18010817e968329457619df1f
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+orbite82/modified2-ubuntu   latest              ad56effc7a34        34 minutes ago      64.2MB
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps -a
+CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
+6f7d8dcaf3a4        orbite82/modified2-ubuntu   "/bin/bash"         16 seconds ago      Up 15 seconds                           stupefied_spence
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker ps
+CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
+6f7d8dcaf3a4        orbite82/modified2-ubuntu   "/bin/bash"         21 seconds ago      Up 20 seconds                           stupefied_spence
+
+┌─[torbite]@[BIO-02059]:~
+└──> $ sudo docker exec -it  6f7d8dcaf3a4 bash
+root@6f7d8dcaf3a4:/# ls
+TEST_DOCKER  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@6f7d8dcaf3a4:/# exit
+exit
+
+```
+![dockerhub_personalizando_imagens]()
+---
+
 # Programa para check security via Docker
 
 ---

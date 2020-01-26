@@ -614,7 +614,7 @@ root@6f7d8dcaf3a4:/# exit
 exit
 
 ```
-![dockerhub_personalizando_imagens]()
+![dockerhub_personalizando_imagens](https://github.com/orbite82/Docker-Orbite/blob/master/dockerhub_personalizando_imagens.png)
 ---
 
 # Programa para check security via Docker

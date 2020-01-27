@@ -70,7 +70,7 @@ Docker version 19.03.5, build 633a0ea838
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run hello-world
+└──> $ sudo docker container run hello-world
 
 ```
 
@@ -89,7 +89,7 @@ To generate this message, Docker took the following steps:
 To try something more ambitious, you can run an Ubuntu container with:
 
 ``` 
-$ docker run -it ubuntu bash
+$ docker container run -it ubuntu bash
 
 Share images, automate workflows, and more with a free Docker ID:
  https://hub.docker.com/
@@ -141,7 +141,7 @@ Total reclaimed space: 0B
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run ubuntu
+└──> $ sudo docker container run ubuntu
 
 ```
 ---
@@ -150,7 +150,7 @@ Total reclaimed space: 0B
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -it ubuntu
+└──> $ sudo docker container run -it ubuntu
 
 root@99280a034763:/# exit
 
@@ -167,12 +167,12 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container run -a -it 85
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                          PORTS               NAMES
 cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      Exited (0) 19 seconds ago                           awesome_shirley
@@ -186,7 +186,7 @@ cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run ubuntu echo "Orbite"
+└──> $ sudo docker container run ubuntu echo "Orbite"
 
 Orbite
 ```
@@ -196,7 +196,7 @@ Orbite
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -it ubuntu
+└──> $ sudo docker container run -it ubuntu
 
 root@2e1f9f6a6c41:/# exit
 
@@ -212,7 +212,7 @@ root@2e1f9f6a6c41:/# exit
 2e1f9f6a6c41
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 2e1f9f6a6c41        ubuntu              "/bin/bash"         3 minutes ago       Up 9 seconds                            quizzical_hodgkin
@@ -247,7 +247,7 @@ root@2e1f9f6a6c41:/# exit
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                   PORTS               NAMES
 2e1f9f6a6c41        ubuntu              "/bin/bash"         2 hours ago         Exited (0) 2 hours ago                       quizzical_hodgkin
@@ -257,12 +257,7 @@ cae670ce05d1        ubuntu              "/bin/bash"         2 hours ago         
 85fbc0514784        ubuntu              "/bin/bash"         3 hours ago         Exited (0) 2 hours ago                       quirky_mccarthy
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ docker con
-config     container  context    
-
-┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ docker con
-config     container  context    
+└──> $ docker conconfig  container  context    
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
 └──> $ sudo docker container rm 2e1f9f6a6c41
@@ -291,7 +286,7 @@ cae670ce05d196d4ec16f5255d2011099a0a9f1a5222140abafa4ef7cb87271e
 Total reclaimed space: 0B
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 ```
@@ -349,7 +344,7 @@ Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run ubuntu:18.04
+└──> $ sudo docker container run ubuntu:18.04
 
 Unable to find image 'ubuntu:18.04' locally
 18.04: Pulling from library/ubuntu
@@ -357,7 +352,7 @@ Digest: sha256:8d31dad0c58f552e890d68bbfb735588b6b820a46e459672d96e585871acc110
 Status: Downloaded newer image for ubuntu:18.04
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run ubuntu:14.04
+└──> $ sudo docker container run ubuntu:14.04
 
 Unable to find image 'ubuntu:14.04' locally
 14.04: Pulling from library/ubuntu
@@ -374,7 +369,7 @@ Status: Downloaded newer image for ubuntu:14.04
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -d dockersamples/static-site
+└──> $ sudo docker container run -d dockersamples/static-site
 030609d344a20c796c8564ce54eaa2065ce18713539ad3be50864a6476c3c78f
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
@@ -407,7 +402,7 @@ d16daa7fb5a3
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -d dockersamples/static-site
+└──> $ sudo docker contaner run -d dockersamples/static-site
 f80defd9bf08884eedb7f158feb454fbf25bee6a1bb8202c28d04b76bd52f91a
 
 ```
@@ -416,12 +411,12 @@ f80defd9bf08884eedb7f158feb454fbf25bee6a1bb8202c28d04b76bd52f91a
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -d -P dockersamples/static-site
+└──> $ sudo docker container run -d -P dockersamples/static-site
 3d798eaeccbc6faf3f42655b175e55106432444d5419b9b9c746d0d0a5226baa
 
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
 3d798eaeccbc        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   19 seconds ago      Up 18 seconds       0.0.0.0:32769->80/tcp, 0.0.0.0:32768->443/tcp   gifted_joliot
 f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 seconds ago      Up 52 seconds       80/tcp, 443/tcp                                 nifty_margulis
@@ -459,11 +454,11 @@ f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 se
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -d -P --name orbite-container dockersamples/static-site
+└──> $ sudo docker container run -d -P --name orbite-container dockersamples/static-site
 11bd90a2ca109c249cfaa18f7f46594d50a2a7033c431eb863e904b9d2d73a79
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
 11bd90a2ca10        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   9 seconds ago       Up 8 seconds        0.0.0.0:32771->80/tcp, 0.0.0.0:32770->443/tcp   orbite-container
 
@@ -473,7 +468,7 @@ CONTAINER ID        IMAGE                       COMMAND                  CREATED
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker container run -it --name criar-imagens-docker ubuntu:18.04 bash
+└──> $ sudo docker container container run -it --name criar-imagens-docker ubuntu:18.04 bash
 root@20c489bf2ff0:/# apt-get update
 root@20c489bf2ff0:/# exit
 exit
@@ -488,7 +483,7 @@ exit
 sha256:7d54931606f8e8a571ef85b72a8ea65d84617df6d4c37f09e452ccb2e5ad3858
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ 
+└──> $ sudo docker images
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
 nossoubuntu                          nginx               7d54931606f8        16 seconds ago      152MB
 orbite/nginx                         latest              bbbb318620f5        4 hours ago         127MB
@@ -512,7 +507,7 @@ ubuntu                               14.04               6e4f1fe62ff1        5 w
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker container run -it --rm nossoubuntu:nginx dpkg -l nginx
+└──> $ sudo docker container container run -it --rm nossoubuntu:nginx dpkg -l nginx
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
@@ -528,11 +523,11 @@ ii  nginx          1.14.0-0ubun all          small, powerful, scalable web/pro
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -it -d ubuntu
+└──> $ sudo docker container run -it -d ubuntu
 44483e6005fb49341cc7f7b0f9749e7e9a8ce30bc4dceb755588126e4660df0e
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS                      PORTS               NAMES
 44483e6005fb        ubuntu                     "/bin/bash"         5 minutes ago       Up 5 minutes                                    tender_hertz
 795c8ddb9002        orbite82/modified-ubuntu   "bash"              37 minutes ago      Up 37 minutes                                   infallible_proskuriakova
@@ -594,35 +589,43 @@ latest: digest: sha256:ef3572cca778113e6033eae4b3bc03d81fe6ec82640d110d499dcd89c
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS              PORTS               NAMES
 795c8ddb9002        orbite82/modified-ubuntu   "bash"              About an hour ago   Up About an hour                        infallible_proskuriakova
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker stop 795c8ddb9002
 795c8ddb9002
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker rm -f  795c8ddb9002
 795c8ddb9002
+
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                         PORTS               NAMES
 44483e6005fb        ubuntu              "/bin/bash"         35 minutes ago      Exited (0) 27 minutes ago                          tender_hertz
 1d3c04acf556        ubuntu              "/bin/bash"         About an hour ago   Exited (0) About an hour ago                       lucid_lovelace
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker rm 44483e6005fb
 44483e6005fb
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker rm 1d3c04acf556
 1d3c04acf556
+
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
 orbite82/modified2-ubuntu   latest              ad56effc7a34        26 minutes ago      64.2MB
 orbite82/modified-ubuntu    latest              86920ea1596a        About an hour ago   64.2MB
 ubuntu                      latest              ccc6e87d482b        10 days ago         64.2MB
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker rmi orbite82/modified2-ubuntu orbite82/modified-ubuntu
 Untagged: orbite82/modified2-ubuntu:latest
@@ -633,6 +636,7 @@ Untagged: orbite82/modified-ubuntu:latest
 Untagged: orbite82/modified-ubuntu@sha256:ef3572cca778113e6033eae4b3bc03d81fe6ec82640d110d499dcd89cba611f1
 Deleted: sha256:86920ea1596a074d3099d88e19eec5c9953d25ca324b6269d8b3ff33b6ab31df
 Deleted: sha256:a78b22468a57b10cb09214890810c7dd1cca347d7a997b56bb8c076cf1b653c2
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker rmi ubuntu
 Untagged: ubuntu:latest
@@ -642,12 +646,13 @@ Deleted: sha256:d1b7fedd4314279a7c28d01177ff56bcff65300f6d41655394bf5d8b788567f6
 Deleted: sha256:340bed96497252624f5e4b0f42accfe7edbb7a01047e2bb5a8142b2464008e73
 Deleted: sha256:6357c335cdfcc3a120e288bbd203bf4c861a14245ce5094634ee097e5217085b
 Deleted: sha256:43c67172d1d182ca5460fc962f8f053f33028e0a3a1d423e05d91b532429e73d
+
 ┌─[torbite]@[BIO-02059]:~
 └──> $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -it -d orbite82/modified2-ubuntu
+└──> $ sudo docker container run -it -d orbite82/modified2-ubuntu
 Unable to find image 'orbite82/modified2-ubuntu:latest' locally
 latest: Pulling from orbite82/modified2-ubuntu
 5c939e3a4d10: Pull complete 
@@ -665,7 +670,7 @@ REPOSITORY                  TAG                 IMAGE ID            CREATED     
 orbite82/modified2-ubuntu   latest              ad56effc7a34        34 minutes ago      64.2MB
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -it -d orbite82/modified2-ubuntu
+└──> $ sudo docker container run -it -d orbite82/modified2-ubuntu
 Unable to find image 'orbite82/modified2-ubuntu:latest' locally
 latest: Pulling from orbite82/modified2-ubuntu
 5c939e3a4d10: Pull complete 
@@ -683,17 +688,17 @@ REPOSITORY                  TAG                 IMAGE ID            CREATED     
 orbite82/modified2-ubuntu   latest              ad56effc7a34        34 minutes ago      64.2MB
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
 6f7d8dcaf3a4        orbite82/modified2-ubuntu   "/bin/bash"         16 seconds ago      Up 15 seconds                           stupefied_spence
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
 6f7d8dcaf3a4        orbite82/modified2-ubuntu   "/bin/bash"         21 seconds ago      Up 20 seconds                           stupefied_spence
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker exec -it  6f7d8dcaf3a4 bash
+└──> $ sudo docker container exec -it  6f7d8dcaf3a4 bash
 root@6f7d8dcaf3a4:/# ls
 TEST_DOCKER  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 root@6f7d8dcaf3a4:/# exit
@@ -713,7 +718,7 @@ exit
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -it --net host --pid host --cap-add audit_control -v /var/lib:/var/lib -v /var/run/docker.sock:/var/run/docker.sock -v /usr/lib/systemd:/usr/lib/systemd -v /etc:/etc --label docker_bench_security docker/docker-bench-security
+└──> $ sudo docker container run -it --net host --pid host --cap-add audit_control -v /var/lib:/var/lib -v /var/run/docker.sock:/var/run/docker.sock -v /usr/lib/systemd:/usr/lib/systemd -v /etc:/etc --label docker_bench_security docker/docker-bench-security
 Unable to find image 'docker/docker-bench-security:latest' locally
 latest: Pulling from docker/docker-bench-security
 cd784148e348: Pull complete 
@@ -902,10 +907,10 @@ Initializing Tue Jan 21 13:19:36 UTC 2020
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ docker run -v "/var/www" ubuntu
+└──> $ docker container run -v "/var/www" ubuntu
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS                      PORTS               NAMES
 1e48135c289a        ubuntu                         "/bin/bash"              10 minutes ago      Exited (0) 10 minutes ago                       trusting_engelbart
 
@@ -929,7 +934,7 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -it -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save:/var/www" ubuntu
+└──> $ sudo docker container run -it -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save:/var/www" ubuntu
 root@d44133277375:/# ls
 bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 root@d44133277375:/# cd var/www/
@@ -945,7 +950,7 @@ root@d44133277375:/var/www# echo "Arquivo criado dentro deste volume" > novo-arq
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -p 8080:3000 -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" node npm start
+└──> $ sudo docker container run -p 8080:3000 -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" node npm start
 Unable to find image 'node:latest' locally
 latest: Pulling from library/node
 146bd6a88618: Pull complete 
@@ -978,7 +983,7 @@ npm ERR!     /root/.npm/_logs/2020-01-22T18_15_53_818Z-debug.log
 * vamos passar a flag `-w` (Working Directory)
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -p 8080:3000 -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" node npm start
+└──> $ sudo docker container run -p 8080:3000 -v "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" node npm start
 
 > volume-exemplo@1.0.0 start /var/www
 > node .
@@ -993,7 +998,7 @@ Server is listening on port 3000
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -p 8080:3000 -v  "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" -d node npm start
+└──> $ sudo docker container run -p 8080:3000 -v  "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" -d node npm start
 008a001e129de2d503f7421d902fbf320a0a71b5fdecbe6feeae60b546b7b8c0
 
 ```
@@ -1011,7 +1016,7 @@ Server is listening on port 3000
 
 ```
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker run -d -p 8080:3000 -v  "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" node npm start
+└──> $ sudo docker container run -d -p 8080:3000 -v  "/home/torbite/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo/:/var/www" -w "/var/www" node npm start
 954e8831381205addf4f014853e9c47c6e4acaeaa08e4cb336f0ebd45dcefde8
 
 ```
@@ -1023,13 +1028,17 @@ Server is listening on port 3000
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
 └──> $ ls
  command-initial-docker-test.txt   container-máquinalocal.png   Docker-Files-Save   eu-amo-docker.png  'hello docker.png'   i-love-very-docker2.png   i-love-very-docker.png   README.md   volume-exemplo.zip
+
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
 └──> $ cd Docker-Files-Save/
+
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save
 └──> $ ls
 novo-arquivo.txt  volume-exemplo
+
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save
 └──> $ cd volume-exemplo/
+
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
 └──> $ ls
 Dockerfile  index.html  index.js  main.css  package.json
@@ -1077,11 +1086,11 @@ REPOSITORY                           TAG                 IMAGE ID            CRE
 orbite82/node-teste-1                  latest              a1be224ed3ed        7 minutes ago       943MB
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
-└──> $ sudo docker run -d -p 8080:3000 orbite82/node-teste-1
+└──> $ sudo docker container run -d -p 8080:3000 orbite82/node-teste-1
 6e489adc0f1394886e742a76833cff286244ccc0dbbd225cc5d44f76bc7f1953
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/volume-exemplo
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                 COMMAND                  CREATED              STATUS              PORTS                    NAMES
 6e489adc0f13        orbite82/node-teste-1   "/bin/sh -c 'npm sta…"   About a minute ago   Up About a minute   0.0.0.0:8080->3000/tcp   focused_mccarthy
 
@@ -1213,7 +1222,7 @@ c6633dd8eac4        minha-rede          bridge              local
 7aa972bae58a        none                null                local
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -it --name meu-container --network minha-rede alpine 
+└──> $ sudo docker container run -it --name meu-container --network minha-rede alpine 
 / # hostname -i
 172.23.0.2
 
@@ -1222,7 +1231,7 @@ c6633dd8eac4        minha-rede          bridge              local
 ```
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 a89a30980dac        alpine              "/bin/sh"           48 seconds ago      Up 47 seconds                           meu-container
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -1438,11 +1447,11 @@ a89a30980dac        alpine              "/bin/sh"           48 seconds ago      
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run --name meu-container1 -it -d --network minha-rede alpine
+└──> $ sudo docker container run --name meu-container1 -it -d --network minha-rede alpine
 e29077d4d11106ea7bfd784ddcb9a606b86afdd5de1bcde406d730b118699464
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run --name meu-container2 -it -d --network minha-rede alpine
+└──> $ sudo docker container run --name meu-container2 -it -d --network minha-rede alpine
 f3875faf450c6c3bfeeab6e1ec7fb2bab184ef61d51662bd01be0b7a3d1500ab
 
 ```
@@ -1451,7 +1460,7 @@ f3875faf450c6c3bfeeab6e1ec7fb2bab184ef61d51662bd01be0b7a3d1500ab
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
 f3875faf450c        alpine              "/bin/sh"           51 seconds ago       Up 51 seconds                           meu-container2
 e29077d4d111        alpine              "/bin/sh"           About a minute ago   Up About a minute                       meu-container1
@@ -1522,11 +1531,11 @@ versão 05 e 06 disponível
 ---
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -d -p 8080:3000 douglasq/alura-books:cap05
+└──> $ sudo docker container run -d -p 8080:3000 douglasq/alura-books:cap05
 4b1e63035803ca9218e87cd307f45901c4b170e3d88f9530d70831b4795d6e7f
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                        COMMAND             CREATED             STATUS              PORTS                    NAMES
 4b1e63035803        douglasq/alura-books:cap05   "npm start"         10 seconds ago      Up 10 seconds       0.0.0.0:8080->3000/tcp   condescending_poitras  
 ```
@@ -1540,12 +1549,12 @@ CONTAINER ID        IMAGE                        COMMAND             CREATED    
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 
 CONTAINER ID        IMAGE                        COMMAND             CREATED             STATUS              PORTS                    NAMES
 4b1e63035803        douglasq/alura-books:cap05   "npm start"         30 minutes ago      Up 30 minutes       0.0.0.0:8080->3000/tcp   condescending_poitras
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker rm -f 4b1e63035803
+└──> $ sudo docker container rm -f 4b1e63035803
 
 4b1e63035803
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -1557,18 +1566,18 @@ c6633dd8eac4        minha-rede          bridge              local
 7aa972bae58a        none                null                local
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run -d --name meu-mongo --network minha-rede mongo
+└──> $ sudo docker container run -d --name meu-mongo --network minha-rede mongo
 
 ```
 * Na sequencia subir a aplicação e validar
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker run --network minha-rede -d -p 8080:3000 douglasq/alura-books:cap05
+└──> $ sudo docker container run --network minha-rede -d -p 8080:3000 douglasq/alura-books:cap05
 6eed50b4b9434388819a015c0483a26557357814cdef74a93653e86cceffea17
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE                        COMMAND                  CREATED              STATUS              PORTS                    NAMES
 6eed50b4b943        douglasq/alura-books:cap05   "npm start"              14 seconds ago       Up 13 seconds       0.0.0.0:8080->3000/tcp   affectionate_cartwright
 320ce661dcbe        mongo                        "docker-entrypoint.s…"   About a minute ago   Up About a minute   27017/tcp                meu-mongo
@@ -1866,7 +1875,7 @@ Starting nginx ...
 Starting nginx ... done
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
-└──> $ sudo docker ps
+└──> $ sudo docker container ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
 cc9ecbfae755        orbite/nginx        "nginx -g 'daemon of…"   21 minutes ago      Up About a minute   0.0.0.0:80->80/tcp, 443/tcp   nginx
 89f7a3c98e30        orbite/alurabooks   "npm start"              21 minutes ago      Up About a minute   0.0.0.0:32771->3000/tcp       alura-books-2
@@ -1936,7 +1945,7 @@ Starting nginx ...
 Starting nginx ... done
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
-└──> $ sudo docker exec -it alura-books-1 ping alura-books-2
+└──> $ sudo docker container exec -it alura-books-1 ping alura-books-2
 PING alura-books-2 (172.19.0.3) 56(84) bytes of data.
 64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=1 ttl=64 time=0.080 ms
 64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=2 ttl=64 time=0.040 ms
@@ -1949,7 +1958,7 @@ PING alura-books-2 (172.19.0.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.040/0.062/0.105/0.027 ms
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/alura-docker-cap06
-└──> $ sudo docker exec -it alura-books-1 ping node2
+└──> $ sudo docker container exec -it alura-books-1 ping node2
 PING node2 (172.19.0.3) 56(84) bytes of data.
 64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=1 ttl=64 time=0.074 ms
 64 bytes from alura-books-2.aluradockercap06_production-network (172.19.0.3): icmp_seq=2 ttl=64 time=0.127 ms

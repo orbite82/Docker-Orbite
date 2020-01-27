@@ -207,7 +207,7 @@ root@2e1f9f6a6c41:/# exit
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker start 2e1f9f6a6c41
+└──> $ sudo docker container start 2e1f9f6a6c41
 
 2e1f9f6a6c41
 
@@ -224,7 +224,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker stop 2e1f9f6a6c41
+└──> $ sudo docker container container stop 2e1f9f6a6c41
 
 2e1f9f6a6c41
 
@@ -235,7 +235,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker start -a -i 2e1f9f6a6c41
+└──> $ sudo docker container start -a -i 2e1f9f6a6c41
 
 root@2e1f9f6a6c41:/# exit
 
@@ -384,11 +384,11 @@ d16daa7fb5a3        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   4 min
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker stop 030609d344a2
+└──> $ sudo docker container container stop 030609d344a2
 030609d344a2
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker stop -t 0 d16daa7fb5a3
+└──> $ sudo docker container container stop -t 0 d16daa7fb5a3
 d16daa7fb5a3
 
 ```
@@ -549,7 +549,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 ubuntu              latest              ccc6e87d482b        10 days ago         64.2MB
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker stop 44483e6005fb
+└──> $ sudo docker container stop 44483e6005fb
 44483e6005fb
 
 ┌─[torbite]@[BIO-02059]:~
@@ -594,7 +594,7 @@ CONTAINER ID        IMAGE                      COMMAND             CREATED      
 795c8ddb9002        orbite82/modified-ubuntu   "bash"              About an hour ago   Up About an hour                        infallible_proskuriakova
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker stop 795c8ddb9002
+└──> $ sudo docker container stop 795c8ddb9002
 795c8ddb9002
 
 ┌─[torbite]@[BIO-02059]:~

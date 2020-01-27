@@ -12,12 +12,65 @@
 
 ---
 ```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ curl -fsSL https://get.docker.com | bash
+# Executing docker install script, commit: f45d7c11389849ff46a6b4d94e0dd1ffebca32c1
++ sudo -E sh -c 'apt-get update -qq >/dev/null'
++ sudo -E sh -c 'DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null'
++ sudo -E sh -c 'curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | apt-key add -qq - >/dev/null'
+Warning: apt-key output should not be parsed (stdout is not a terminal)
++ sudo -E sh -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" > /etc/apt/sources.list.d/docker.list'
++ sudo -E sh -c 'apt-get update -qq >/dev/null'
++ '[' -n '' ']'
++ sudo -E sh -c 'apt-get install -y -qq --no-install-recommends docker-ce >/dev/null'
++ sudo -E sh -c 'docker version'
+Client: Docker Engine - Community
+ Version:           19.03.5
+ API version:       1.40
+ Go version:        go1.12.12
+ Git commit:        633a0ea838
+ Built:             Wed Nov 13 07:29:52 2019
+ OS/Arch:           linux/amd64
+ Experimental:      false
 
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.5
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.12.12
+  Git commit:       633a0ea838
+  Built:            Wed Nov 13 07:28:22 2019
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.2.10
+  GitCommit:        b34a5c8af56e510852c35414db4c1f4fa6172339
+ runc:
+  Version:          1.0.0-rc8+dev
+  GitCommit:        3e425f80a8c931f88e6d94a8c831b9d5aa481657
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
+If you would like to use Docker as a non-root user, you should now consider
+adding your user to the "docker" group with something like:
+
+  sudo usermod -aG docker docker-vm
+
+Remember that you will have to log out and back in for this to take effect!
+
+WARNING: Adding a user to the "docker" group will grant the ability to run
+         containers which can be used to obtain root privileges on the
+         docker host.
+         Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
+         for more information.
+docker-vm@Docker-Ubuntu:~$ docker --version
+Docker version 19.03.5, build 633a0ea838
 ```
 # Docker Hello World
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run hello-world
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run hello-world
 
 ```
 
@@ -49,7 +102,8 @@ For more examples and ideas, visit:
 # Listar container
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps -a
 
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
@@ -65,7 +119,8 @@ fea647289d44        hello-world         "/hello"            15 seconds ago      
 # Remover todas as imagens baixadas Docker
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container prune
 
 WARNING! This will remove all stopped containers.
 Are you sure you want to continue? [y/N] y
@@ -85,7 +140,8 @@ Total reclaimed space: 0B
 # Executar uma imagem Docker
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run ubuntu
 
 ```
 ---
@@ -93,11 +149,13 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu
 # Executar uma imagem Docker e com intereção
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -it ubuntu
 
 root@99280a034763:/# exit
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps -a
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 99280a034763        ubuntu              "/bin/bash"         36 seconds ago      Exited (0) 32 seconds ago                       vigorous_ishizaka
@@ -108,11 +166,13 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container run -a -it 85
 ---
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps -a
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                          PORTS               NAMES
 cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      Exited (0) 19 seconds ago                           awesome_shirley
@@ -125,7 +185,8 @@ cae670ce05d1        ubuntu              "/bin/bash"         21 seconds ago      
 # Executar um comando dentro da imagem do container e saindo
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu echo "Orbite"
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run ubuntu echo "Orbite"
 
 Orbite
 ```
@@ -134,7 +195,8 @@ Orbite
 # Executar um comando dentro da imagem do container e interagindo
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -it ubuntu
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -it ubuntu
 
 root@2e1f9f6a6c41:/# exit
 
@@ -144,11 +206,13 @@ root@2e1f9f6a6c41:/# exit
 # Iniciar uma imagem de um container especifico
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start 2e1f9f6a6c41
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker start 2e1f9f6a6c41
 
 2e1f9f6a6c41
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 2e1f9f6a6c41        ubuntu              "/bin/bash"         3 minutes ago       Up 9 seconds                            quizzical_hodgkin
@@ -159,7 +223,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 # Parar uma imagem de um container especifico
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker stop 2e1f9f6a6c41
 
 2e1f9f6a6c41
 
@@ -169,7 +234,8 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 2e1f9f6a6c41
 # Iniciar uma imagem de um container especifico e interagindo
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker start -a -i 2e1f9f6a6c41
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker start -a -i 2e1f9f6a6c41
 
 root@2e1f9f6a6c41:/# exit
 
@@ -180,7 +246,8 @@ root@2e1f9f6a6c41:/# exit
 # Remover a imagem de um container baixada em sua máquina
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps -a
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps -a
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                   PORTS               NAMES
 2e1f9f6a6c41        ubuntu              "/bin/bash"         2 hours ago         Exited (0) 2 hours ago                       quizzical_hodgkin
@@ -189,16 +256,20 @@ cae670ce05d1        ubuntu              "/bin/bash"         2 hours ago         
 99280a034763        ubuntu              "/bin/bash"         3 hours ago         Exited (0) 3 hours ago                       vigorous_ishizaka
 85fbc0514784        ubuntu              "/bin/bash"         3 hours ago         Exited (0) 2 hours ago                       quirky_mccarthy
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ docker con
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ docker con
 config     container  context    
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ docker con
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ docker con
 config     container  context    
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container rm 2e1f9f6a6c41
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container rm 2e1f9f6a6c41
 2e1f9f6a6c41
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container rm ec5
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container rm ec5
 ec5
 
 ```
@@ -207,7 +278,8 @@ ec5
 # Remover todas as Imagens de containers baixadas em sua máquina
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker container prune
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker container prune
 
 WARNING! This will remove all stopped containers.
 Are you sure you want to continue? [y/N] y
@@ -218,7 +290,8 @@ cae670ce05d196d4ec16f5255d2011099a0a9f1a5222140abafa4ef7cb87271e
 
 Total reclaimed space: 0B
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 ```
@@ -227,7 +300,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 # Listar as imagens baixadas em sua máquina do Docker
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker images
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker images
 
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
 ubuntu                               latest              ccc6e87d482b        40 hours ago        64.2MB
@@ -260,7 +334,8 @@ ubuntu                               14.04               6e4f1fe62ff1        5 w
 # Remover uma imagem Docker baixada em sua máquina
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker rmi hello-world
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker rmi hello-world
 
 Untagged: hello-world:latest
 Untagged: hello-world@sha256:9572f7cdcee8591948c2963463447a53466950b3fc15a247fcad1917ca215a2f
@@ -273,14 +348,16 @@ Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
 # Baixar uma imagem com o numero e versão da distribuição especifica
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu:18.04
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run ubuntu:18.04
 
 Unable to find image 'ubuntu:18.04' locally
 18.04: Pulling from library/ubuntu
 Digest: sha256:8d31dad0c58f552e890d68bbfb735588b6b820a46e459672d96e585871acc110
 Status: Downloaded newer image for ubuntu:18.04
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run ubuntu:14.04
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run ubuntu:14.04
 
 Unable to find image 'ubuntu:14.04' locally
 14.04: Pulling from library/ubuntu
@@ -296,7 +373,8 @@ Status: Downloaded newer image for ubuntu:14.04
 # Executar um container em BackGround
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -d dockersamples/static-site
 030609d344a20c796c8564ce54eaa2065ce18713539ad3be50864a6476c3c78f
 
 torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
@@ -310,10 +388,12 @@ d16daa7fb5a3        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   4 min
 # Docker stop formas mais rapida parar
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop 030609d344a2
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker stop 030609d344a2
 030609d344a2
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker stop -t 0 d16daa7fb5a3
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker stop -t 0 d16daa7fb5a3
 d16daa7fb5a3
 
 ```
@@ -326,7 +406,8 @@ d16daa7fb5a3
 # Antes
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d dockersamples/static-site
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -d dockersamples/static-site
 f80defd9bf08884eedb7f158feb454fbf25bee6a1bb8202c28d04b76bd52f91a
 
 ```
@@ -334,11 +415,13 @@ f80defd9bf08884eedb7f158feb454fbf25bee6a1bb8202c28d04b76bd52f91a
 # Depois
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d -P dockersamples/static-site
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -d -P dockersamples/static-site
 3d798eaeccbc6faf3f42655b175e55106432444d5419b9b9c746d0d0a5226baa
 
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
 3d798eaeccbc        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   19 seconds ago      Up 18 seconds       0.0.0.0:32769->80/tcp, 0.0.0.0:32768->443/tcp   gifted_joliot
 f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 seconds ago      Up 52 seconds       80/tcp, 443/tcp                                 nifty_margulis
@@ -349,7 +432,8 @@ f80defd9bf08        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   53 se
 # Verificar a porta do container
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker port 3d798eaeccbc
 443/tcp -> 0.0.0.0:32768
 80/tcp -> 0.0.0.0:32769
 
@@ -374,10 +458,12 @@ torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker port 3d798eaeccbc
 # Executar e colocar um nome no container
 
 ```
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker run -d -P --name orbite-container dockersamples/static-site
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker run -d -P --name orbite-container dockersamples/static-site
 11bd90a2ca109c249cfaa18f7f46594d50a2a7033c431eb863e904b9d2d73a79
 
-torbite@BIO-02059:~/Documents/Docker-Orbite$ sudo docker ps
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                           NAMES
 11bd90a2ca10        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   9 seconds ago       Up 8 seconds        0.0.0.0:32771->80/tcp, 0.0.0.0:32770->443/tcp   orbite-container
 

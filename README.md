@@ -1220,6 +1220,13 @@ drwxrwxr-x 2 torbite torbite 4,0K jan 28 10:38 .configs
 
 ```
 
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/nginx-dockerfile/.configs
+└──> $ ls
+nginx.conf
+
+```
+
 ---
 
 ```

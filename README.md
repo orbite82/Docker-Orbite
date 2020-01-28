@@ -99,11 +99,78 @@ For more examples and ideas, visit:
 ```
 ---
 
+# Comandos Docker em Geral
+
+```
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  engine      Manage the docker engine
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+```
+---
+
 # Listar container
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker ps -a
+└──> $ sudo docker container ps -a
 
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
@@ -915,7 +982,7 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
 1e48135c289a        ubuntu                         "/bin/bash"              10 minutes ago      Exited (0) 10 minutes ago                       trusting_engelbart
 
 ┌─[torbite]@[BIO-02059]:~
-└──> $ sudo docker inspect 1e48135c289a
+└──> $ sudo docker container inspect 1e48135c289a
 
 "Mounts": [
             {
@@ -1023,6 +1090,75 @@ Server is listening on port 3000
 ---
 
 # Criar um Dockerfile
+
+```
+FROM ubuntu
+
+MAINTAINER Thiago Orbite <thiagoorbite@gmail.com>
+
+RUN apt-get update
+
+RUN apt-get install -y nginx && apt-get clean
+
+ADD ./configs/nginx.conf /etc/nginx/sites-enabled/default
+
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+EXPOSE 8080
+
+ENTRYPOINT [“/usr/sbin/nginx”]
+
+CMD [“start”, “-g”]
+
+```
+---
+* Imagem base
+* O parâmetro `FROM` é a imagem que você vai usar como base para a criação de sua nova imagem ou tag específica.
+
+FROM ubuntu
+FROM ubuntu:latest
+
+* O parâmetro `MAINTAINER` Mantenedor da imagem
+ Empresa ou pessoa que mantem essa imagem atualizada ou personalizada.
+
+MAINTAINER Thiago Orbite <thiagoorbite@gmail.com>
+
+* O parâmetro `RUN` Executando comandos no container
+Run executar comandos em um container criado com shell ou executar qualquer comando em uma camada sobre a imagem atual
+
+RUN apt-get update
+RUN apt-get install -y nginx && apt-get clean
+
+* O parâmetro `ENTRYPOINT` Permite executar e configurar um container quer será executavel, 
+Com esse parâmetro você pode setar se quer que algo seja executado na hora da instanciação do container. 
+Então, quando você der um docker run nessa imagem, ela já vai instanciar e executar o programa que está no caminho que você colocar entre colchetes
+
+ENTRYPOINT [“/usr/sbin/nginx”]
+
+* O parâmetro `CMD` O principal objetivo de um CMD é fornecer padrões para um contêiner em execução. Esses padrões podem incluir um executável ou podem omitir o executável. Nesse caso, você também deve especificar uma instrução `ENTRYPOINT`.
+
+CMD service nginx start -g
+
+* O parâmetro `ADD`Adicionando arquivos de configuração no container, para organizar de forma limpa os arquivos de configuração podem ficar em locais semparados
+
+ADD ./configs/nginx.conf /etc/nginx/sites-enabled/defa
+
+* Monitorando os logs do container, `STDOUT` geralmente é a saída normal de um comando e `STDERR` é normalmente usado para gerar mensagens de erro. Por padrão, os logs do docker mostram os comandos `STDOUT` e `STDERR`
+
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+* O parâmetro `EXPOSE``Expondo portas do container
+
+EXPOSE 8080
+---
+
+
+---
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
@@ -1235,7 +1371,7 @@ c6633dd8eac4        minha-rede          bridge              local
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 a89a30980dac        alpine              "/bin/sh"           48 seconds ago      Up 47 seconds                           meu-container
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker inspect meu-container
+└──> $ sudo docker container inspect meu-container
 [
     {
         "Id": "a89a30980dac7ac179f592f5ead5ef5a4f98964b2f24c09503a2281bd62b361b",

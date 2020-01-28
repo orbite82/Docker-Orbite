@@ -1155,8 +1155,6 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 * O parâmetro `EXPOSE``Expondo portas do container
 
 EXPOSE 8080
----
-
 
 ---
 

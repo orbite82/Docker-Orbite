@@ -1159,6 +1159,70 @@ EXPOSE 8080
 ---
 
 ```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/nginx-dockerfile
+└──> $ sudo docker image build -t nginxdockerfile:1.0 .
+Sending build context to Docker daemon  3.584kB
+Step 1/11 : FROM ubuntu
+ ---> ccc6e87d482b
+Step 2/11 : MAINTAINER Thiago Orbite <thiagoorbite@gmail.com>
+ ---> Using cache
+ ---> 450ce053b104
+Step 3/11 : RUN apt-get update -y
+ ---> Using cache
+ ---> b726b976e5b0
+Step 4/11 : RUN apt-get install -y nginx && apt-get clean
+ ---> Using cache
+ ---> 8fd64a90bc30
+Step 5/11 : ADD .configs/nginx.conf /etc/nginx/sites-enabled/default
+ ---> Using cache
+ ---> 887445035750
+Step 6/11 : RUN ln -sf /dev/stdout /var/log/nginx/access.log
+ ---> Running in f158b2c7414a
+Removing intermediate container f158b2c7414a
+ ---> bb0007d6ae04
+Step 7/11 : RUN ln -sf /dev/stderr /var/log/nginx/error.log
+ ---> Running in 1b570046b185
+Removing intermediate container 1b570046b185
+ ---> e408636b45dd
+Step 8/11 : RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+ ---> Running in f83d6b682a1c
+Removing intermediate container f83d6b682a1c
+ ---> 76e551341680
+Step 9/11 : EXPOSE 8080
+ ---> Running in 732f4928614c
+Removing intermediate container 732f4928614c
+ ---> 1b7aa0bd214d
+Step 10/11 : ENTRYPOINT [“/usr/sbin/nginx”]
+ ---> Running in 65fcc7cb5042
+Removing intermediate container 65fcc7cb5042
+ ---> efdbcd57d1bb
+Step 11/11 : CMD [“start”, “-g”]
+ ---> Running in b288c53f473f
+Removing intermediate container b288c53f473f
+ ---> f1f045a9b7fb
+Successfully built f1f045a9b7fb
+Successfully tagged nginxdockerfile:1.0
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/nginx-dockerfile
+└──> $ sudo docker image ls
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+nginxdockerfile             1.0                 f1f045a9b7fb        19 seconds ago      152MB
+
+```
+
+```
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite/Docker-Files-Save/nginx-dockerfile
+└──> $ ls -lha
+total 16K
+drwxrwxr-x 3 torbite torbite 4,0K jan 28 10:43 .
+drwxrwxr-x 5 torbite torbite 4,0K jan 28 11:21 ..
+drwxrwxr-x 2 torbite torbite 4,0K jan 28 10:38 .configs
+-rw-rw-r-- 1 torbite torbite  417 jan 28 10:43 Dockerfile
+
+```
+
+---
+
+```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
 └──> $ ls
  command-initial-docker-test.txt   container-máquinalocal.png   Docker-Files-Save   eu-amo-docker.png  'hello docker.png'   i-love-very-docker2.png   i-love-very-docker.png   README.md   volume-exemplo.zip

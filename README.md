@@ -969,6 +969,109 @@ Initializing Tue Jan 21 13:19:36 UTC 2020
 
 ```
 ---
+# Volumes Docker - Bind
+
+* `Mount Bind` Apesar de já estarem disponíveis há bastante tempo, o bind mounts são mais limitados que os volumes.
+
+O bind mount realiza a montagem de um arquivo/diretório diretamente do host para o container. Por isso, a montagem é referenciada pelo seu caminho completo no hospedeiro.
+
+Embora seja uma opção com bom desempenho, ela conta com a mesma estrutura do sistema de arquivos (FAT, NTFS, EXT…) do host.
+
+Além do que, algumas questões de segurança devem ser pensadas, já que um container poderá ter acesso a arquivos e diretórios sensíveis na máquina hospedeira.
+
+```
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo docker container run -d -ti --mount type=bind,src=/home/torbite/volume-bind,dst=/volume-bind ubuntu
+2283ce6f3228483944c12f0865d74b9a481811cc9168f6bcfcc6eed1caeaa8c2
+
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo docker exec -it 8982bdc28e93 bash
+root@8982bdc28e93:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  volume-bind
+root@8982bdc28e93:/# cd volume-bind/
+root@8982bdc28e93:/volume-bind# touch teste1
+root@8982bdc28e93:/volume-bind# ls
+teste1
+root@8982bdc28e93:/volume-bind# exit
+exit
+
+```
+
+```
+┌─[torbite]@[Bio2059]:~/volume-bind
+└──> $ ls
+teste1
+
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo docker exec -it 8982bdc28e93 bash
+root@8982bdc28e93:/# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         234G   34G  189G  16% /
+tmpfs            64M     0   64M   0% /dev
+tmpfs           7.8G     0  7.8G   0% /sys/fs/cgroup
+shm              64M     0   64M   0% /dev/shm
+/dev/sda2       234G   34G  189G  16% /volume-bind
+tmpfs           7.8G     0  7.8G   0% /proc/asound
+tmpfs           7.8G     0  7.8G   0% /proc/acpi
+tmpfs           7.8G     0  7.8G   0% /proc/scsi
+tmpfs           7.8G     0  7.8G   0% /sys/firmware
+
+```
+* `Volumes` Quando criamos um volume, o Docker armazena os dados em um diretório na sua área gerenciada no host. Assim, quando montarmos ele dentro de algum container, será esse mesmo diretório que montado.
+
+É interessante notar que um volume poderá ser utilizado por vários containers simultaneamente. E, quando nenhum container estiver mais utilizando-o, ele ainda estará disponível para ser montado, pois o Docker não remove os volumes automaticamente.
+
+```
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo docker volume create tipo-volumes
+tipo-volumes
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo docker inspect tipo-volumes
+[
+    {
+        "CreatedAt": "2020-02-03T12:34:31-03:00",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/tipo-volumes/_data",
+        "Name": "tipo-volumes",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo su 
+root@Bio2059:/home/torbite/Docker-Orbite# cd /var/lib/docker/volumes/tipo-volumes/
+root@Bio2059:/var/lib/docker/volumes/tipo-volumes# ls
+_data
+root@Bio2059:/var/lib/docker/volumes/tipo-volumes# cd _data/
+root@Bio2059:/var/lib/docker/volumes/tipo-volumes/_data# ls
+root@Bio2059:/var/lib/docker/volumes/tipo-volumes/_data# touch teste2
+root@Bio2059:/var/lib/docker/volumes/tipo-volumes/_data# touch teste3
+root@Bio2059:/var/lib/docker/volumes/tipo-volumes/_data# ls
+teste2  teste3
+
+```
+
+```
+┌─[torbite]@[Bio2059]:~/volume-bind
+└──> $ sudo docker ps  
+CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS               NAMES
+4137923692e7        ubuntu                 "/bin/bash"              7 seconds ago       Up 5 seconds                            charming_napier
+
+┌─[torbite]@[Bio2059]:~/volume-bind
+└──> $ sudo docker exec -it 4137923692e7 bash
+root@4137923692e7:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tipo-volumes  tmp  usr  var
+root@4137923692e7:/# cd tipo-volumes/
+root@4137923692e7:/tipo-volumes# ls
+teste2  teste3
+root@4137923692e7:/tipo-volumes#
+
+```
+
+---
+---
 
 # Salvar dados com volumes
 

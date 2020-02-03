@@ -542,7 +542,7 @@ exit
 
 ```
 ---
-# Commit como fazer uma imagem co commit anterior 
+# Commit como fazer uma imagem com commit anterior 
 
 ```
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite

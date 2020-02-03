@@ -1017,6 +1017,10 @@ tmpfs           7.8G     0  7.8G   0% /proc/scsi
 tmpfs           7.8G     0  7.8G   0% /sys/firmware
 
 ```
+---
+# Volumes Docker - Bind
+---
+
 * `Volumes` Quando criamos um volume, o Docker armazena os dados em um diretório na sua área gerenciada no host. Assim, quando montarmos ele dentro de algum container, será esse mesmo diretório que montado.
 
 É interessante notar que um volume poderá ser utilizado por vários containers simultaneamente. E, quando nenhum container estiver mais utilizando-o, ele ainda estará disponível para ser montado, pois o Docker não remove os volumes automaticamente.

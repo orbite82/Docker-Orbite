@@ -1073,8 +1073,23 @@ teste2  teste3
 root@4137923692e7:/tipo-volumes#
 
 ```
-
 ---
+
+# Remover volume
+
+`OBS:` Cuidaddo ao remover o volume e verificar se não tem nada de importante salvo.
+
+```
+┌─[torbite]@[Bio2059]:~/Docker-Orbite
+└──> $ sudo docker volume prune
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+tipo-volumes
+
+Total reclaimed space: 0B
+
+```
 ---
 
 # Salvar dados com volumes
@@ -1103,6 +1118,7 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
                 "Propagation": ""
 
 ```
+
 ---
 # Salvar e direcionar os dados, logs e etc... do container na sua pasta local
 
@@ -2281,4 +2297,157 @@ PING node2 (172.19.0.3) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3048ms
 rtt min/avg/max/mdev = 0.074/0.109/0.131/0.023 ms
 
+```
+
+---
+
+# Docker Swarm
+
+```
+┌─[torbite]@[Bio2059]:~
+└──> $ sudo docker swarm --help
+
+Usage:	docker swarm COMMAND
+
+Manage Swarm
+
+Commands:
+  ca          Display and rotate the root CA
+  init        Initialize a swarm
+  join        Join a swarm as a node and/or manager
+  join-token  Manage join tokens
+  leave       Leave the swarm
+  unlock      Unlock swarm
+  unlock-key  Manage the unlock key
+  update      Update the swarm
+
+Run 'docker swarm COMMAND --help' for more information on a command.
+┌─[torbite]@[Bio2059]:~
+└──> $ sudo docker swarm init
+Error response from daemon: could not choose an IP address to advertise since this system has multiple addresses on different interfaces (192.168.4.121 on wlp2s0 and 172.16.1.1 on vboxnet0) - specify one with --advertise-addr
+
+```
+`Obs:` Se ocorrer o erro abaixo no docker swarm init seguir des forma:
+
+```
+┌─[torbite]@[Bio2059]:~
+└──> $ sudo ip add
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp1s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 88:6f:d4:fe:b7:e0 brd ff:ff:ff:ff:ff:ff
+3: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether c0:b5:d7:ed:ee:6b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.4.121/23 brd 192.168.5.255 scope global dynamic noprefixroute wlp2s0
+       valid_lft 254633sec preferred_lft 254633sec
+    inet6 fe80::64b6:db33:e3d5:d0ed/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:dd:7f:38:32 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:ddff:fe7f:3832/64 scope link 
+       valid_lft forever preferred_lft forever
+5: vboxnet0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 0a:00:27:00:00:00 brd ff:ff:ff:ff:ff:ff
+    inet 172.16.1.1/24 brd 172.16.1.255 scope global vboxnet0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::800:27ff:fe00:0/64 scope link 
+       valid_lft forever preferred_lft forever
+┌─[torbite]@[Bio2059]:~
+└──> $ docker swarm init --advertise-addr 192.168.4.121
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.40/swarm/init: dial unix /var/run/docker.sock: connect: permission denied
+┌─[torbite]@[Bio2059]:~
+└──> $ sudo docker swarm init --advertise-addr 192.168.4.121
+Swarm initialized: current node (7m7gmyff2qxwlp78p11kegs5j) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-314a8iatk7kly2wjjgxiw5iwi5lzmx76m7fegc2gvxc10ptq35-29c6f1oyramh8se1nh3eflh8r 192.168.4.121:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+┌─[torbite]@[Bio2059]:~
+└──> $ sudo docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+7m7gmyff2qxwlp78p11kegs5j *   Bio2059             Ready               Active              Leader              19.03.5
+
+```
+
+* Para adicionar novas máquinas ao cluster apenas executar em cada uma delas este comando:
+
+
+`Obs:` As máquinas deve ter o docker instalado : > $ curl -fsSL https://get.docker.com | bash
+
+```
+docker swarm join --token SWMTKN-1-314a8iatk7kly2wjjgxiw5iwi5lzmx76m7fegc2gvxc10ptq35-29c6f1oyramh8se1nh3eflh8r 192.168.4.121:2377
+
+```
+node master:
+
+```
+
+[node1] (local) root@192.168.0.13 ~
+$ docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+iuka4rgfk7832ht4bfwyp1ore *   node1               Ready               Active              Leader              19.03.4
+i8y2g32izmwbdgctxa6nt7mvr     node2               Ready               Active                                  19.03.4
+lrgndnyumgy1fvl8h1yil2346     node3               Ready               Active                                  19.03.4
+
+```
+
+node 2:
+
+```
+[node2] (local) root@192.168.0.12 ~
+$ docker swarm join --token SWMTKN-1-24d2id2wqu1znyji3z4vuikr65ztc60ysxtvhhwdt106c3a8mq-1fdwc6ornqjjgyrb1ctw69mam 192.168.0.13:2377
+This node joined a swarm as a worker.
+
+```
+
+node 3:
+
+```
+[node3] (local) root@192.168.0.11 ~
+$ docker swarm join --token SWMTKN-1-24d2id2wqu1znyji3z4vuikr65ztc60ysxtvhhwdt106c3a8mq-1fdwc6ornqjjgyrb1ctw69mam 192.168.0.13:2377
+This node joined a swarm as a worker.
+
+```
+
+```
+[node1] (local) root@192.168.0.13 ~
+$ docker node promote node2
+Node node2 promoted to a manager in the swarm.
+[node1] (local) root@192.168.0.13 ~
+$ docker node promote node3
+Node node3 promoted to a manager in the swarm.
+[node1] (local) root@192.168.0.13 ~
+$ docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+iuka4rgfk7832ht4bfwyp1ore *   node1               Ready               Active              Leader              19.03.4
+i8y2g32izmwbdgctxa6nt7mvr     node2               Ready               Active              Reachable           19.03.4
+lrgndnyumgy1fvl8h1yil2346     node3               Ready               Active              Reachable           19.03.4
+
+```
+
+```
+[node1] (local) root@192.168.0.13 ~
+$ docker swarm join-token worker
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-24d2id2wqu1znyji3z4vuikr65ztc60ysxtvhhwdt106c3a8mq-1fdwc6ornqjjgyrb1ctw69mam 192.168.0.13:2377
+
+```
+
+```
+[node1] (local) root@192.168.0.13 ~
+$ docker swarm join-token manager
+To add a manager to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-24d2id2wqu1znyji3z4vuikr65ztc60ysxtvhhwdt106c3a8mq-77gocg3pnesc2hph1o2iwsygs 192.168.0.13:2377
+    
 ```

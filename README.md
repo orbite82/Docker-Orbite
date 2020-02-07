@@ -566,7 +566,7 @@ node                                 latest              f7756628c1ee        2 w
 ubuntu                               14.04               6e4f1fe62ff1        5 weeks ago         197MB
 
 ```
-`OBS:`sudo docker image list Ou sudo docker image list
+`Obs:`sudo docker image list Ou sudo docker image list
 
 ---
 
@@ -583,7 +583,7 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ii  nginx          1.14.0-0ubun all          small, powerful, scalable web/pro
 
 ```
-`OBS:` Não é a melhor prática fazer desta forma.
+`Obs:` Não é a melhor prática fazer desta forma.
 ---
 
 # Tutorial Parte 1 - Criar, Push e Push Image DockerHub
@@ -1077,7 +1077,7 @@ root@4137923692e7:/tipo-volumes#
 
 # Remover volume
 
-`OBS:` Cuidaddo ao remover o volume e verificar se não tem nada de importante salvo.
+`Obs:` Cuidaddo ao remover o volume e verificar se não tem nada de importante salvo.
 
 ```
 ┌─[torbite]@[Bio2059]:~/Docker-Orbite
@@ -1180,7 +1180,7 @@ npm ERR!     /root/.npm/_logs/2020-01-22T18_15_53_818Z-debug.log
 
 Server is listening on port 3000
 ```
-# OBS
+# Obs
 
 * Se não passar o parametro -d, seu terminal vai travar, porém a apicação vai rodar e você conseve ver via localhost:8080 o resultado abaixo:
 

@@ -2456,3 +2456,325 @@ To add a manager to this swarm, run the following command:
     docker swarm join --token SWMTKN-1-24d2id2wqu1znyji3z4vuikr65ztc60ysxtvhhwdt106c3a8mq-77gocg3pnesc2hph1o2iwsygs 192.168.0.13:2377
 
 ```
+
+# Criando uma Secret no docker swarm
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+rm165loiupn01usqbh0pr7kfp *   node1               Ready               Active              Leader              19.03.4
+urlzua3k9q6sqb77m0wn6e4nb     node2               Ready               Active              Reachable           19.03.4
+vleygl31te4wqs1i91lghg2sx     node3               Ready               Active              Reachable           19.03.4
+
+[node1] (local) root@192.168.0.18 ~
+$ echo "ConteudoDoSecret" | docker secret create um-secret -
+r9umne27crwnzb98i9b2mdqu6
+
+```
+
+* Listando secret
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker secret ls
+ID                          NAME                DRIVER              CREATED             UPDATED
+r9umne27crwnzb98i9b2mdqu6   um-secret                               5 minutes ago       5 minutes ago
+
+```
+* Executando inspect
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker secret inspect um-secret
+[
+    {
+        "ID": "r9umne27crwnzb98i9b2mdqu6",
+        "Version": {
+            "Index": 31
+        },
+        "CreatedAt": "2020-02-07T17:39:56.723200135Z",
+        "UpdatedAt": "2020-02-07T17:39:56.723200135Z",
+        "Spec": {
+            "Name": "um-secret",
+            "Labels": {}
+        }
+    }
+]
+
+```
+* Como passar e usar uma secret
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker service create --name nginx -p 8080:80 --secret um-secret nginx
+0trwg612mlyjdhdsyhfggkvg7
+overall progress: 1 out of 1 tasks 
+1/1: running   [==================================================>] 
+verify: Service converged 
+
+[node1] (local) root@192.168.0.18 ~
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+0trwg612mlyj        nginx               replicated          1/1                 nginx:latest        *:8080->80/tcp
+
+```
+
+* Localizar e visulizar a sua secret
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker service inspect nginx
+[
+    {
+        "ID": "0trwg612mlyjdhdsyhfggkvg7",
+        "Version": {
+            "Index": 34
+        },
+        "CreatedAt": "2020-02-07T17:51:42.205162724Z",
+        "UpdatedAt": "2020-02-07T17:51:42.210122782Z",
+        "Spec": {
+            "Name": "nginx",
+            "Labels": {},
+            "TaskTemplate": {
+                "ContainerSpec": {
+                    "Image": "nginx:latest@sha256:ad5552c786f128e389a0263104ae39f3d3c7895579d45ae716f528185b36bc6f",
+                    "Init": false,
+                    "StopGracePeriod": 10000000000,
+                    "DNSConfig": {},
+                    "Secrets": [
+                        {
+                            "File": {
+                                "Name": "um-secret",
+                                "UID": "0",
+                                "GID": "0",
+                                "Mode": 292
+                            },
+                            "SecretID": "r9umne27crwnzb98i9b2mdqu6",
+                            "SecretName": "um-secret"
+                        }
+                    ],
+                    "Isolation": "default"
+                },
+                "Resources": {
+                    "Limits": {},
+                    "Reservations": {}
+                },
+                "RestartPolicy": {
+                    "Condition": "any",
+                    "Delay": 5000000000,
+                    "MaxAttempts": 0
+                },
+                "Placement": {
+                    "Platforms": [
+                        {
+                            "Architecture": "amd64",
+                            "OS": "linux"
+                        },
+                        {
+                            "OS": "linux"
+                        },
+                        {
+                            "Architecture": "arm64",
+                            "OS": "linux"
+                        },
+                        {
+                            "Architecture": "386",
+                            "OS": "linux"
+                        },
+                        {
+                            "Architecture": "ppc64le",
+                            "OS": "linux"
+                        },
+                        {
+                            "Architecture": "s390x",
+                            "OS": "linux"
+                        }
+                    ]
+                },
+                "ForceUpdate": 0,
+                "Runtime": "container"
+            },
+            "Mode": {
+                "Replicated": {
+                    "Replicas": 1
+                }
+            },
+            "UpdateConfig": {
+                "Parallelism": 1,
+                "FailureAction": "pause",
+                "Monitor": 5000000000,
+                "MaxFailureRatio": 0,
+                "Order": "stop-first"
+            },
+            "RollbackConfig": {
+                "Parallelism": 1,
+                "FailureAction": "pause",
+                "Monitor": 5000000000,
+                "MaxFailureRatio": 0,
+                "Order": "stop-first"
+            },
+            "EndpointSpec": {
+                "Mode": "vip",
+                "Ports": [
+                    {
+                        "Protocol": "tcp",
+                        "TargetPort": 80,
+                        "PublishedPort": 8080,
+                        "PublishMode": "ingress"
+                    }
+                ]
+            }
+        },
+        "Endpoint": {
+            "Spec": {
+                "Mode": "vip",
+                "Ports": [
+                    {
+                        "Protocol": "tcp",
+                        "TargetPort": 80,
+                        "PublishedPort": 8080,
+                        "PublishMode": "ingress"
+                    }
+                ]
+            },
+            "Ports": [
+                {
+                    "Protocol": "tcp",
+                    "TargetPort": 80,
+                    "PublishedPort": 8080,
+                    "PublishMode": "ingress"
+                }
+            ],
+            "VirtualIPs": [
+                {
+                    "NetworkID": "il4gwa4cpyos297c3pcu9zxyi",
+                    "Addr": "10.255.0.5/16"
+                }
+            ]
+        }
+    }
+]
+
+```
+* Usando o scale para verificar minha secret dentro do cluster do swarm
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker service scale nginx=10
+nginx scaled to 10
+overall progress: 10 out of 10 tasks 
+1/10: running   [==================================================>] 
+2/10: running   [==================================================>] 
+3/10: running   [==================================================>] 
+4/10: running   [==================================================>] 
+5/10: running   [==================================================>] 
+6/10: running   [==================================================>] 
+7/10: running   [==================================================>] 
+8/10: running   [==================================================>] 
+9/10: running   [==================================================>] 
+10/10: running   [==================================================>] 
+verify: Service converged 
+[node1] (local) root@192.168.0.18 ~
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+1a87d6e61fd9        nginx:latest        "nginx -g 'daemon of…"   12 seconds ago      Up 10 seconds       80/tcp              nginx.4.0n3cda8ha36vhg24uiv1j9yqf
+11c6eb36bb44        nginx:latest        "nginx -g 'daemon of…"   12 seconds ago      Up 10 seconds       80/tcp              nginx.9.sjm8c2clum6eekgimsakvhnod
+0abae48be931        nginx:latest        "nginx -g 'daemon of…"   12 seconds ago      Up 10 seconds       80/tcp              nginx.2.pw8a6t0elpqxuyb0ca6x237m1
+d09eefca9295        nginx:latest        "nginx -g 'daemon of…"   12 seconds ago      Up 10 seconds       80/tcp              nginx.8.q8ca1obpvqxcfa9yf49hkoglq
+
+```
+
+* Entrar no container para certificar que a secret está dentro dos container's
+
+```
+[node1] (local) root@192.168.0.18 ~
+$ docker exec -it 1a87d6e61fd9 bash
+root@1a87d6e61fd9:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@1a87d6e61fd9:/# ls  -lha
+total 8.0K
+drwxr-xr-x   1 root root   28 Feb  7 18:01 .
+drwxr-xr-x   1 root root   28 Feb  7 18:01 ..
+-rwxr-xr-x   1 root root    0 Feb  7 18:01 .dockerenv
+drwxr-xr-x   2 root root 4.0K Jan 30 00:00 bin
+drwxr-xr-x   2 root root    6 Nov 10 12:17 boot
+drwxr-xr-x   5 root root  340 Feb  7 18:01 dev
+drwxr-xr-x   1 root root   66 Feb  7 18:01 etc
+drwxr-xr-x   2 root root    6 Nov 10 12:17 home
+drwxr-xr-x   1 root root   56 Feb  2 08:06 lib
+drwxr-xr-x   2 root root   34 Jan 30 00:00 lib64
+drwxr-xr-x   2 root root    6 Jan 30 00:00 media
+drwxr-xr-x   2 root root    6 Jan 30 00:00 mnt
+drwxr-xr-x   2 root root    6 Jan 30 00:00 opt
+dr-xr-xr-x 672 root root    0 Feb  7 18:01 proc
+drwx------   2 root root   37 Jan 30 00:00 root
+drwxr-xr-x   1 root root   38 Feb  7 18:01 run
+drwxr-xr-x   2 root root 4.0K Jan 30 00:00 sbin
+drwxr-xr-x   2 root root    6 Jan 30 00:00 srv
+dr-xr-xr-x  13 root root    0 Jan 31 18:20 sys
+drwxrwxrwt   1 root root    6 Feb  2 08:06 tmp
+drwxr-xr-x   1 root root   66 Jan 30 00:00 usr
+drwxr-xr-x   1 root root   19 Jan 30 00:00 var
+root@1a87d6e61fd9:/# cd /run/
+root@1a87d6e61fd9:/run# ls
+lock  nginx.pid  secrets  utmp
+root@1a87d6e61fd9:/run# cd secrets/
+root@1a87d6e61fd9:/run/secrets# ls
+um-secret
+
+root@1a87d6e61fd9:/run/secrets# cat um-secret 
+ConteudoDoSecret
+
+```
+
+`Obs:` Aqui temos certeza que é uma `secret` e não uma `variavel`
+
+```
+root@1a87d6e61fd9:/run/secrets# set
+BASH=/bin/bash
+BASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extquote:force_fignore:globasciiranges:hostcomplete:interactive_comments:progcomp:promptvars:sourcepath
+BASH_ALIASES=()
+BASH_ARGC=([0]="0")
+BASH_ARGV=()
+BASH_CMDS=()
+BASH_LINENO=()
+BASH_SOURCE=()
+BASH_VERSINFO=([0]="5" [1]="0" [2]="3" [3]="1" [4]="release" [5]="x86_64-pc-linux-gnu")
+BASH_VERSION='5.0.3(1)-release'
+COLUMNS=163
+DIRSTACK=()
+EUID=0
+GROUPS=()
+HISTFILE=/root/.bash_history
+HISTFILESIZE=500
+HISTSIZE=500
+HOME=/root
+HOSTNAME=1a87d6e61fd9
+HOSTTYPE=x86_64
+IFS=$' \t\n'
+LINES=38
+MACHTYPE=x86_64-pc-linux-gnu
+MAILCHECK=60
+NGINX_VERSION=1.17.8
+NJS_VERSION=0.3.8
+OLDPWD=/run
+OPTERR=1
+OPTIND=1
+OSTYPE=linux-gnu
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PIPESTATUS=([0]="0")
+PKG_RELEASE=1~buster
+PPID=0
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+PS2='> '
+PS4='+ '
+PWD=/run/secrets
+SHELL=/bin/bash
+SHELLOPTS=braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor
+SHLVL=1
+TERM=xterm
+UID=0
+_=um-secret
+
+```

@@ -2303,6 +2303,10 @@ rtt min/avg/max/mdev = 0.074/0.109/0.131/0.023 ms
 
 # Docker Swarm
 
+* Se não conseguir subir em VM ou na sua propria máquinas por motivos de desempenho pode usar o site abaixo para montar um cluster totalmente gratuito por 4 horas usando sua conta do docker hub: -->
+
+https://labs.play-with-docker.com/
+
 ```
 ┌─[torbite]@[Bio2059]:~
 └──> $ sudo docker swarm --help
@@ -2322,14 +2326,15 @@ Commands:
   update      Update the swarm
 
 Run 'docker swarm COMMAND --help' for more information on a command.
+
+```
+`Obs:` Se ocorrer o erro abaixo no docker swarm init seguir desta forma, pois você precisa passar qual rede ele vai usar:
+
+```
 ┌─[torbite]@[Bio2059]:~
 └──> $ sudo docker swarm init
 Error response from daemon: could not choose an IP address to advertise since this system has multiple addresses on different interfaces (192.168.4.121 on wlp2s0 and 172.16.1.1 on vboxnet0) - specify one with --advertise-addr
 
-```
-`Obs:` Se ocorrer o erro abaixo no docker swarm init seguir des forma:
-
-```
 ┌─[torbite]@[Bio2059]:~
 └──> $ sudo ip add
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -2449,5 +2454,5 @@ $ docker swarm join-token manager
 To add a manager to this swarm, run the following command:
 
     docker swarm join --token SWMTKN-1-24d2id2wqu1znyji3z4vuikr65ztc60ysxtvhhwdt106c3a8mq-77gocg3pnesc2hph1o2iwsygs 192.168.0.13:2377
-    
+
 ```

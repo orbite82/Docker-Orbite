@@ -360,6 +360,44 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ---
 
+# Ou Remover
+
+```
+┌─[torbite]@[Bio2059]:~/k8s-orbite/Kubernetes-K8S-Orbite
+└──> $ sudo docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+17ae0e2066e6ff42f739c3ea576c0033ab3cb09ed43a66dd3ef925d4ad879945
+4e8b59d652099d36988b10f908d8b89c7fbd1339d06f11257e3324c900099a8e
+292b8298219781e12d3a1f18856fb18981922bc17ba7ee32e0fe606fca850832
+a0732d07179874a1f52e3bf9e2bd1165d48d281a5586b97b90d526b599b0c40d
+b812578e1edbf51b3adfef4a61b61b220e66b5e8d5c8bb21904dd64b45e50704
+a6dfe49e6d652a9dfe7183c8fbf96375b6e135b3223fd7d79e77fa19eb6769b6
+93314050bb7f70558838c210667bb27b8cfb155d6eb34a2b3e9ba622b4bf9d4a
+ef1d2249f1546f925904b33b7fe56deb6ab437ce6292b1e62561fecb10548bf2
+52ae394dda26156d9b87a625c8031a4df23e3a2a27cbe5eaab29e605a39bbaf0
+988a6c328ff5a754c5eca1bf35f8231e32f90301bf5600cda7ecbb337b848c52
+808ccc357ced5a2f79188f42019e1893ad59b1eb58c5ba1c2d142914bf2f1b3c
+e0feb14773b77fddd360bc6864263681a232637539d7324ab4c2aa96df693d37
+e918c0b9904b09e2bffd5f37ba833b1614105c18bc3a6f43d824733e5b3b2e3f
+330c07e31c1b18f40b5608396beece583819ee0820b635f784003930c1445495
+429cb6e23684935b3d01245fae867bfdc01e7d3191fc1d657554e4713d629c82
+293a5af4badee96262380e0458c03af751b331a7f3d16a9013f499c2c4b938b0
+658c6bb99bcf1b2157092e0e6f4297139446b6f8b191bf13d4805f85f981693c
+
+Deleted Networks:
+docker_gwbridge
+
+Total reclaimed space: 3.009kB
+
+```
+
 # Listar as imagens baixadas em sua máquina do Docker
 
 ```

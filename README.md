@@ -357,6 +357,7 @@ Total reclaimed space: 0B
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 ```
+
 ---
 
 # Listar as imagens baixadas em sua máquina do Docker
@@ -1091,6 +1092,9 @@ Total reclaimed space: 0B
 
 ```
 ---
+* `OU`:
+
+$ docker system prune -a --volumes
 
 # Salvar dados com volumes
 

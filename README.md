@@ -691,7 +691,7 @@ latest: digest: sha256:ef3572cca778113e6033eae4b3bc03d81fe6ec82640d110d499dcd89c
 
 ```
 ---
-# Tutoria Parte 2 - Removendo e testando as images do DockerHub
+# Tutorial Parte 2 - Removendo e testando as images do DockerHub
 
 ```
 ┌─[torbite]@[BIO-02059]:~

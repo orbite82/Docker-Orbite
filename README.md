@@ -201,6 +201,10 @@ fea647289d4416a5f4a868cdab7394352607abd349d0a46dcd138461b7f7a4bc
 
 Total reclaimed space: 0B
 
+ou
+┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
+└──> $ sudo docker image prune -a
+
 ```
 ---
 

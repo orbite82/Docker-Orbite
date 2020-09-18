@@ -498,7 +498,7 @@ d16daa7fb5a3        dockersamples/static-site   "/bin/sh -c 'cd /usr…"   4 min
 030609d344a2
 
 ┌─[torbite]@[BIO-02059]:~/Documents/Docker-Orbite
-└──> $ sudo docker container container stop -t 0 d16daa7fb5a3
+└──> $ sudo docker container stop -t 0 d16daa7fb5a3
 d16daa7fb5a3
 
 ```
